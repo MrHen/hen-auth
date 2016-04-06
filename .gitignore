@@ -1,3 +1,5 @@
 .env
+app
 bower_components
 node_modules
+typings
