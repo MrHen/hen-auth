@@ -52,7 +52,11 @@ var locations = {
 
   output: "app",
   test: "app/**/*.spec.js",
-  deploy: "app/**/*",
+  deploy: [
+    "./*.*",
+    "./.travis.yml",
+    "app/**/*"
+  ],
   start: "app/app.js",
   bower: "app/bower_components",
 
