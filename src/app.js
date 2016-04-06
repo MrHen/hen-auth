@@ -57,10 +57,10 @@ app.get('/secured/ping', function(req, res) {
     "All good. You only get this message if you're authenticated");
 });
 
-var port = process.env.PORT || 3001;
-
-http.createServer(app).listen(port, function(err) {
-  console.log('listening in http://localhost:' + port);
-});
+// var port = process.env.PORT || 3001;
+//
+// http.createServer(app).listen(port, function(err) {
+//   console.log('listening in http://localhost:' + port);
+// });
 
 module.exports = app;
