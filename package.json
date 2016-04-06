@@ -5,6 +5,7 @@
   "scripts": {
     "build": "gulp build",
     "prepublish": "gulp test",
+    "postinstall": "gulp test",
     "start": "node app/server.js",
     "test": "gulp test"
   },
