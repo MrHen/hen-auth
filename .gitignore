@@ -1,6 +1,6 @@
 .env
 .publish
-app
+app/
 bower_components
 node_modules
 typings

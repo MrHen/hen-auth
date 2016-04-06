@@ -16,7 +16,9 @@ var users = require('./routes/users');
 var app = express();
 var router = express.Router();
 
-dotenv.load();
+dotenv.load().config({
+  silent: true
+});
 
 var authenticate = jwt({
   secret: new Buffer(process.env.AUTH0_CLIENT_SECRET, 'base64'),
@@ -32,7 +34,9 @@ app.set('view engine', 'jade');
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 app.use(cookieParser());
 
 
@@ -48,12 +52,13 @@ app.get('/ping', function(req, res) {
 
 
 app.get('/secured/ping', function(req, res) {
-  res.status(200).send("All good. You only get this message if you're authenticated");
+  res.status(200).send(
+    "All good. You only get this message if you're authenticated");
 });
 
 var port = process.env.PORT || 3001;
 
-http.createServer(app).listen(port, function (err) {
+http.createServer(app).listen(port, function(err) {
   console.log('listening in http://localhost:' + port);
 });
 
