@@ -16,7 +16,9 @@ var run_sequence = require('run-sequence');
 
 var configs = {
   deploy: {
-    heroku: "release/heroku"
+    heroku: {
+      branch: "release/heroku"
+    }
   },
 
   inject: {
