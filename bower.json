@@ -1,0 +1,19 @@
+{
+  "name": "hen-auth",
+  "version": "0.0.0",
+  "homepage": "https://github.com/MrHen/hen-auth",
+  "authors": [
+    "Adam Babcock"
+  ],
+  "description": "Auth0 Authentication",
+  "main": "app/index.html",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
