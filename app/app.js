@@ -16,9 +16,10 @@ var users = require('./routes/users');
 var app = express();
 var router = express.Router();
 
-dotenv.load().config({
-  silent: true
-});
+dotenv
+  .config({
+    silent: true
+  });
 
 var authenticate = jwt({
   secret: new Buffer(process.env.AUTH0_CLIENT_SECRET, 'base64'),
