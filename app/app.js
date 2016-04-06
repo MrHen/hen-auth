@@ -45,7 +45,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/secured', authenticate);
 
-app.use('/sample', express.static('sample'));
+app.use('/sample', express.static(path.join(__dirname, 'sample')));
 
 app.get('/ping', function(req, res) {
   res.send("All good. You don't need to be authenticated to call this");
