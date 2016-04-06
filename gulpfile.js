@@ -231,7 +231,7 @@ gulp.task('start:client', function() {
 /////////
 
 gulp.task('deploy', function(callback) {
-  run_sequence('deploy:ghpages', callback);
+  run_sequence('deploy:heroku', callback);
 });
 
 gulp.task('deploy:heroku', ['build:client', 'test:run'], function() {
