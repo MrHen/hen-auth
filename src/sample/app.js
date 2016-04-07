@@ -49,13 +49,14 @@ angular.module('sample', [
 
     jwtInterceptorProvider.tokenGetter = function(store) {
       return store.get('token');
-    }
+    };
 
     // Add a simple interceptor that will fetch all requests and add the jwt token to its authorization header.
     // NOTE: in case you are calling APIs which expect a token signed with a different secret, you might
     // want to check the delegation-token example
     $httpProvider.interceptors.push('jwtInterceptor');
-  }).run(function($rootScope, auth, store, jwtHelper, $location) {
+  })
+  .run(function($rootScope, auth, store, jwtHelper, $location) {
     $rootScope.$on('$locationChangeStart', function() {
 
       var token = store.get('token');
