@@ -9,7 +9,6 @@ var jwt = require('express-jwt');
 var cors = require('cors');
 var http = require('http');
 
-
 var routes = require('./routes/index');
 var users = require('./routes/users');
 

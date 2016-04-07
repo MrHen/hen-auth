@@ -20,13 +20,13 @@ angular.module('sample.home', [
           alert(response.data);
         }
       });
-    }
+    };
 
     $scope.logout = function() {
       auth.signout();
       store.remove('profile');
       store.remove('token');
       $location.path('/login');
-    }
+    };
 
   });
