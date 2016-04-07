@@ -57,7 +57,7 @@ var locations = {
     "./.travis.yml",
     "app/**/*"
   ],
-  start: "app/app.js",
+  start: "app/server.js",
   bower: "app/bower_components",
 
   inject: {
