@@ -22,6 +22,22 @@ angular.module('sample.home', [
       });
     };
 
+    $scope.callScopedApi = function() {
+      // Just call the API as you'd do using $http
+      $http({
+        url: '/api/scoped/ping',
+        method: 'GET'
+      }).then(function(result) {
+        $scope.response = JSON.stringify(result, null, 2);
+      }, function(response) {
+        if (response.status == -1) {
+          alert("Please download the API seed so that you can call it.");
+        } else {
+          alert(response.data);
+        }
+      });
+    };
+
     $scope.logout = function() {
       auth.signout();
       store.remove('profile');

@@ -42,6 +42,18 @@ app.use(cookieParser());
 app.use('/api/', routes);
 app.use('/api/users', users);
 app.use('/api/secured', authenticate);
+app.use('/api/scoped', authenticate);
+app.use('/api/scoped', function(req, res, next) {
+  if (!req.user || !req.user.app_metadata) {
+    return res.status(403).send("No app_metadata.");
+  }
+
+  if (req.user.app_metadata.test !== "test") {
+    return res.status(403).send("Missing claim.");
+  }
+
+  next();
+});
 
 app.get('/api/ping', function(req, res) {
   res.send("All good. You don't need to be authenticated to call this");
@@ -50,6 +62,11 @@ app.get('/api/ping', function(req, res) {
 app.get('/api/secured/ping', function(req, res) {
   res.status(200).send(
     "All good. You only get this message if you're authenticated");
+});
+
+app.get('/api/scoped/ping', function(req, res) {
+  res.status(200).send(
+    "All good. You only get this message if you're scoped");
 });
 
 app.use('/bower_components', express.static(path.join(__dirname,
