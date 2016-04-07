@@ -14,39 +14,6 @@ var gulp_nodemon = require('gulp-nodemon');
 var main_bower_files = require('main-bower-files');
 var run_sequence = require('run-sequence');
 
-var configs = {
-  deploy: {
-    heroku: {
-      branch: "release/heroku"
-    }
-  },
-
-  inject: {
-    angular: {
-      name: 'angular',
-      ignorePath: 'app/'
-    },
-    bower: {
-      name: 'bower'
-    }
-  },
-
-  mocha: {},
-
-  typings: {
-    config: './typings.json'
-  },
-
-  typescript: {
-    config: 'tsconfig.json',
-    overrides: {}
-  },
-
-  watcher: {
-    interval: 1000
-  }
-};
-
 var locations = {
   sources: "src/**/*",
 
@@ -75,7 +42,50 @@ var locations = {
   },
 
   watch: {
-    restart: ["app/**/*"]
+    restart: ["src/**/*"]
+  }
+};
+
+var configs = {
+  deploy: {
+    heroku: {
+      branch: "release/heroku"
+    }
+  },
+
+  inject: {
+    angular: {
+      name: 'angular',
+      ignorePath: 'app/'
+    },
+    bower: {
+      name: 'bower'
+    }
+  },
+
+  nodemon: {
+    script: locations.start,
+    env: {
+      NODE_ENV: process.env.NODE_ENV || 'development'
+    },
+    watch: locations.watch.restart,
+    tasks: ['build:client'],
+    verbose: true
+  },
+
+  mocha: {},
+
+  typings: {
+    config: './typings.json'
+  },
+
+  typescript: {
+    config: 'tsconfig.json',
+    overrides: {}
+  },
+
+  watcher: {
+    interval: 1000
   }
 };
 
@@ -221,15 +231,7 @@ gulp.task('start', ['build:client'], function(callback) {
 });
 
 gulp.task('start:client', function() {
-  gulp_nodemon({
-    script: locations.start,
-    env: {
-      NODE_ENV: process.env.NODE_ENV || 'development',
-      NODE_CONFIG_DIR: 'app/config'
-    },
-    watch: locations.watch.restart,
-    verbose: true
-  });
+  gulp_nodemon(configs.nodemon);
 });
 
 /////////
