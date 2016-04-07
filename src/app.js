@@ -40,26 +40,20 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 
 
-app.use('/', routes);
-app.use('/users', users);
-app.use('/secured', authenticate);
+app.use('/api/', routes);
+app.use('/api/users', users);
+app.use('/api/secured', authenticate);
 
-app.use('/sample', express.static(path.join(__dirname, 'sample')));
-
-app.get('/ping', function(req, res) {
+app.get('/api/ping', function(req, res) {
   res.send("All good. You don't need to be authenticated to call this");
 });
 
 
-app.get('/secured/ping', function(req, res) {
+app.get('/api/secured/ping', function(req, res) {
   res.status(200).send(
     "All good. You only get this message if you're authenticated");
 });
 
-// var port = process.env.PORT || 3001;
-//
-// http.createServer(app).listen(port, function(err) {
-//   console.log('listening in http://localhost:' + port);
-// });
+app.use('/sample', express.static(path.join(__dirname, 'sample')));
 
 module.exports = app;
