@@ -52,6 +52,8 @@ app.get('/api/secured/ping', function(req, res) {
     "All good. You only get this message if you're authenticated");
 });
 
+app.use('/bower_components', express.static(path.join(__dirname,
+  'bower_components')));
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use('/', express.static(path.join(__dirname, 'sample')));
 

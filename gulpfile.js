@@ -33,13 +33,12 @@ var locations = {
     src: 'app/sample/index.html',
     bower: [
       'app/bower_components/**/*',
+      '!app/bower_components/auth0.js'
     ],
     angular: [
       'app/sample/**/*.js',
-      // '!app/sample/app.js',
       '!app/sample/auth0-variables.js',
-      '!app/sample/**/*.spec.js',
-      // '!app/bower_components/**/*'
+      '!app/sample/**/*.spec.js'
     ]
   },
 
@@ -66,10 +65,11 @@ var configs = {
   inject: {
     angular: {
       name: 'angular',
-      ignorePath: 'app/'
+      ignorePath: 'app/sample'
     },
     bower: {
-      name: 'bower'
+      name: 'bower',
+      ignorePath: 'app/'
     }
   },
 
