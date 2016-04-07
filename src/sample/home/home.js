@@ -11,8 +11,8 @@ angular.module('sample.home', [
       $http({
         url: '/api/secured/ping',
         method: 'GET'
-      }).then(function() {
-        alert("We got the secured data successfully");
+      }).then(function(result) {
+        $scope.response = JSON.stringify(result, null, 2);
       }, function(response) {
         if (response.status == -1) {
           alert("Please download the API seed so that you can call it.");
