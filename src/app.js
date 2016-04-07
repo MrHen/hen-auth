@@ -9,8 +9,8 @@ var jwt = require('express-jwt');
 var cors = require('cors');
 var http = require('http');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
+var routes = require('./api/routes/index');
+var users = require('./api/routes/users');
 
 var app = express();
 var router = express.Router();
@@ -27,7 +27,7 @@ var authenticate = jwt({
 
 app.use(cors());
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'api', 'views'));
 app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
