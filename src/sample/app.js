@@ -44,7 +44,7 @@ angular.module('sample', [
 
     authProvider.on('authenticated', function($location) {
       console.log("Authenticated");
-
+      $location.path('/');
     });
 
     jwtInterceptorProvider.tokenGetter = function(store) {
