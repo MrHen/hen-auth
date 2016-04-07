@@ -3,6 +3,7 @@ var gulp = require('gulp');
 var gulp_angular_filesort = require('gulp-angular-filesort');
 var gulp_bower = require('gulp-bower');
 var gulp_changed = require('gulp-changed');
+var gulp_count = require('gulp-count');
 var gulp_filter = require("gulp-filter");
 var gulp_gh_pages = require('gulp-gh-pages');
 var gulp_inject = require('gulp-inject');
@@ -37,7 +38,7 @@ var locations = {
 
   filters: {
     copy: ['**/*.{html,css,json,js,jade,png}'],
-    typescript: ['**/*.ts', '!**/*.spec.ts'],
+    typescript: ['**/*.ts'],
     tests: ['**/*.spec.ts']
   },
 
@@ -146,6 +147,7 @@ gulp.task('build:client:copy', function() {
   return gulp.src(locations.sources)
     .pipe(copyFilter)
     .pipe(gulp_changed(locations.output))
+    .pipe(gulp_count('Copying <%= files %>...'))
     .pipe(gulp.dest(locations.output));
 });
 
@@ -156,34 +158,12 @@ gulp.task('build:client:typescript', function() {
   var tsFilter = gulp_filter(locations.filters.typescript); // non-test TypeScript files
 
   var errors = null;
-  var tsResult = gulp.src(locations.sources)
+  var tsResult = tsProject.src()
+    .pipe(tsFilter)
     .pipe(gulp_changed(locations.output, {
       extension: '.js'
     }))
-    .pipe(tsFilter)
-    .pipe(gulp_typescript(tsProject))
-    .on('error', function(error) {
-      errors = errors || error;
-    })
-    .on('end', function() {
-      if (errors) {
-        throw errors;
-      }
-    });
-
-  return tsResult.js.pipe(gulp.dest(locations.output));
-});
-
-gulp.task('build:test', ['build:typings', 'build:client'], function(callback) {
-  run_sequence('build:test:typescript', callback);
-});
-
-gulp.task('build:test:typescript', function() {
-  var tsTestFilter = gulp_filter(locations.filters.tests);
-
-  var errors = false;
-  var tsResult = gulp.src(locations.sources)
-    .pipe(tsTestFilter)
+    .pipe(gulp_count('Building <%= files %>...'))
     .pipe(gulp_typescript(tsProject))
     .on('error', function(error) {
       errors = errors || error;
@@ -253,11 +233,11 @@ gulp.task('deploy:heroku', ['build:client', 'test:run'], function() {
 // Test
 ///////
 
-gulp.task('test', function(callback) {
+gulp.task('test', ['build:client'], function(callback) {
   run_sequence('test:run', callback);
 });
 
-gulp.task('test:run', ['build:client', 'build:test'], function() {
+gulp.task('test:run', function() {
   return gulp.src([locations.test])
     .pipe(gulp_spawn_mocha(configs.mocha));
 });
