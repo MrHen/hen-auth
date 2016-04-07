@@ -29,15 +29,24 @@ var locations = {
   bower: "app/bower_components",
 
   inject: {
-    dest: 'app',
-    src: 'app/index.html',
-    angular: ['app/**/*.js', '!app/app.js', '!app/**/*.spec.js',
-      '!app/bower_components/**/*'
+    dest: 'app/sample',
+    src: 'app/sample/index.html',
+    bower: [
+      'app/bower_components/**/*',
+    ],
+    angular: [
+      'app/sample/**/*.js',
+      // '!app/sample/app.js',
+      '!app/sample/auth0-variables.js',
+      '!app/sample/**/*.spec.js',
+      // '!app/bower_components/**/*'
     ]
   },
 
   filters: {
-    copy: ['**/*.{html,css,json,js,jade,png}'],
+    copy: [
+      '**/*.{html,css,json,js,jade,png}'
+    ],
     typescript: ['**/*.ts'],
     tests: ['**/*.spec.ts']
   },
@@ -138,7 +147,7 @@ gulp.task('build', function(callback) {
 
 gulp.task('build:client', ['build:typings', 'build:bower'], function(callback) {
   run_sequence('build:client:typescript', 'build:client:copy',
-    'build:inject', callback);
+    'build:bower:copy', 'build:inject', callback);
 });
 
 gulp.task('build:client:copy', function() {
@@ -178,14 +187,21 @@ gulp.task('build:client:typescript', function() {
 });
 
 gulp.task('build:bower', function() {
-  return gulp_bower().pipe(gulp.dest(locations.bower));
+  return gulp_bower();
+});
+
+gulp.task('build:bower:copy', function() {
+  return gulp.src(main_bower_files(), {
+      base: "bower_components"
+    })
+    .pipe(gulp.dest(locations.bower));
 });
 
 gulp.task('build:typings', function() {
   return gulp.src(configs.typings.config).pipe(gulp_typings());
 });
 
-gulp.task('build:inject', function(callback) {
+gulp.task('build:inject', ['build:bower:copy'], function(callback) {
   run_sequence('build:inject:angular', 'build:inject:bower', callback);
 });
 
@@ -197,9 +213,11 @@ gulp.task('build:inject:angular', function() {
 });
 
 gulp.task('build:inject:bower', function() {
-  // return gulp.src(locations.inject.src)
-  //     .pipe(gulp_inject(gulp.src(main_bower_files(), {read: false}), configs.inject.bower))
-  //     .pipe(gulp.dest(locations.inject.dest));
+  return gulp.src(locations.inject.src)
+    .pipe(gulp_inject(gulp.src(locations.inject.bower, {
+      read: false
+    }), configs.inject.bower))
+    .pipe(gulp.dest(locations.inject.dest));
 });
 
 //////
