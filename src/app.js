@@ -52,7 +52,7 @@ app.get('/api/secured/ping', function(req, res) {
     "All good. You only get this message if you're authenticated");
 });
 
-app.use('/sample', express.static(path.join(__dirname, 'sample')));
 app.use('/public', express.static(path.join(__dirname, 'public')));
+app.use('/', express.static(path.join(__dirname, 'sample')));
 
 module.exports = app;
