@@ -10,11 +10,18 @@ import path = require("path");
 
 import logger = require("morgan");
 
-let apiRoute = require("./api/routes/index");
+import authenticate from "./api/authenticate";
 
 dotenv.config({
     silent: true
 });
+
+authenticate({
+    secret: new Buffer(process.env.AUTH0_CLIENT_SECRET, "base64"),
+    audience: process.env.AUTH0_CLIENT_ID
+});
+
+import apiRoute = require("./api/routes");
 
 async.auto({
     "app": (cb) => {
@@ -38,25 +45,7 @@ async.auto({
         cb(null, app);
     },
     "routes": ["app", (results, cb) => {
-        let authenticate = expressJwt({
-            secret: new Buffer(process.env.AUTH0_CLIENT_SECRET, "base64"),
-            audience: process.env.AUTH0_CLIENT_ID
-        });
-
         results.app.use("/api/", apiRoute);
-        results.app.use("/api/secured", authenticate);
-        results.app.use("/api/scoped", authenticate);
-        results.app.use("/api/scoped", function(req, res, next) {
-            if (!req.user || !req.user.app_metadata) {
-                return res.status(403).send("No app_metadata.");
-            }
-
-            if (req.user.app_metadata.test !== "test") {
-                return res.status(403).send("Missing claim.");
-            }
-
-            next();
-        });
 
         results.app.use("/bower_components", express.static(path.join(__dirname,
             "bower_components")));

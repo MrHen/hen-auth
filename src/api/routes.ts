@@ -1,9 +1,25 @@
 import express = require("express");
 import path = require("path");
 
+import authenticate from "./authenticate";
+
 let router = express.Router();
 
-router.use("/public", express.static(path.join(__dirname, "..", "public")));
+router.use("/secured", authenticate());
+router.use("/scoped", authenticate());
+router.use("/scoped", function(req, res, next) {
+    if (!req.user || !req.user.app_metadata) {
+        return res.status(403).send("No app_metadata.");
+    }
+
+    if (req.user.app_metadata.test !== "test") {
+        return res.status(403).send("Missing claim.");
+    }
+
+    next();
+});
+
+router.use("/public", express.static(path.join(__dirname, "public")));
 
 router.get("/ping", function(req, res) {
   res.send("All good. You don't need to be authenticated to call this");

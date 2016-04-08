@@ -12,7 +12,8 @@
     "typings/main.d.ts"
   ],
   "files": [
-    "src/api/routes/index.ts",
+    "src/api/authenticate.ts",
+    "src/api/routes.ts",
     "src/global.spec.ts",
     "src/server.ts",
     "typings/main.d.ts"
