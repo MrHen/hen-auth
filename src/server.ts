@@ -12,18 +12,20 @@ import logger = require("morgan");
 
 import authenticate from "./api/authenticate";
 
+import apiRoute = require("./api/routes");
+
 dotenv.config({
     silent: true
 });
 
-authenticate({
-    secret: new Buffer(process.env.AUTH0_CLIENT_SECRET, "base64"),
-    audience: process.env.AUTH0_CLIENT_ID
-});
-
-import apiRoute = require("./api/routes");
-
 async.auto({
+    "configAuth": (cb) => {
+      authenticate({
+          secret: new Buffer(process.env.AUTH0_CLIENT_SECRET, "base64"),
+          audience: process.env.AUTH0_CLIENT_ID
+      });
+      cb();
+    },
     "app": (cb) => {
         let app = express();
 
@@ -54,7 +56,7 @@ async.auto({
 
         cb();
     }],
-    "server": ["app", "routes", (results, cb) => {
+    "server": ["configAuth", "app", "routes", (results, cb) => {
         cb(null, http.createServer(results.app));
     }],
     "listen": ["server", (results, cb) => {
