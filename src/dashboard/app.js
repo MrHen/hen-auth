@@ -1,13 +1,14 @@
-angular.module('sample', [
+angular.module('dashboard', [
     'auth0',
     'ngRoute',
-    'sample.home',
+    'dashboard.home',
     'angular-storage',
     'angular-jwt'
   ])
   .config(function myAppConfig($routeProvider, authProvider, $httpProvider,
     $locationProvider,
     jwtInterceptorProvider) {
+
     $routeProvider
       .when('/', {
         controller: 'HomeCtrl',
@@ -20,7 +21,6 @@ angular.module('sample', [
         templateUrl: 'login/login.html',
         pageTitle: 'Login'
       });
-
 
     authProvider.init({
       domain: AUTH0_DOMAIN,
@@ -77,7 +77,7 @@ angular.module('sample', [
     $scope.$on('$routeChangeSuccess', function(e, nextRoute) {
       if (nextRoute.$$route && angular.isDefined(nextRoute.$$route.pageTitle)) {
         $scope.pageTitle = nextRoute.$$route.pageTitle +
-          ' | Auth0 Sample';
+          ' | Auth0 dashboard';
       }
     });
   });

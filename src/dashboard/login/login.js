@@ -1,4 +1,4 @@
-angular.module('sample')
+angular.module('dashboard')
   .controller('LoginCtrl', function($scope, auth) {
 
     $scope.signin = function() {
