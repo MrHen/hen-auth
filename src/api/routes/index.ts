@@ -20,7 +20,10 @@ router.get("/scoped/ping", function(req, res) {
 });
 
 router.get("/", function(req, res, next) {
-  res.render("index", { title: "Express" });
+  res.render("index", {
+    rootUrl: ".",
+    title: "Express"
+  });
 });
 
 module.exports = router;
