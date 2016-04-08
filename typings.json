@@ -1,9 +1,27 @@
 {
   "name": "hen-auth",
   "version": false,
-  "dependencies": {},
+  "dependencies": {
+    "lodash": "registry:npm/lodash#4.0.0+20160305082308"
+  },
   "ambientDependencies": {
+    "acl": "registry:dt/acl#0.4.7+20160316155526",
+    "async": "registry:dt/async#1.4.2+20160316155526",
+    "bluebird": "registry:dt/bluebird#2.0.0+20160319051630",
+    "body-parser": "registry:dt/body-parser#0.0.0+20160317120654",
+    "cors": "registry:dt/cors#0.0.0+20160317120654",
+    "dotenv": "registry:dt/dotenv#2.0.0+20160327131627",
+    "express": "registry:dt/express#4.0.0+20160317120654",
+    "express-jwt": "registry:dt/express-jwt#0.0.0+20160319033732",
+    "express-serve-static-core": "registry:dt/express-serve-static-core#0.0.0+20160322035842",
+    "express-unless": "registry:dt/express-unless#0.0.0+20160317120654",
+    "mime": "registry:dt/mime#0.0.0+20160316155526",
     "mocha": "registry:dt/mocha#2.2.5+20160317120654",
+    "mongodb": "registry:dt/mongodb#2.1.0+20160328151449",
+    "morgan": "registry:dt/morgan#1.2.2+20160317120654",
+    "node": "registry:dt/node#4.0.0+20160330064709",
+    "redis": "registry:dt/redis#0.12.1+20160316155526",
+    "serve-static": "registry:dt/serve-static#0.0.0+20160317120654",
     "should": "registry:dt/should#8.1.1+20160316155526"
   }
 }

@@ -1,11 +1,25 @@
 {
-    "compilerOptions": {
-        "module": "commonjs",
-        "target": "es5",
-        "noImplicitAny": false,
-        "sourceMap": false
-    },
-    "filesGlob": [
-        "src/**/*.ts"
-    ],
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "noImplicitAny": false,
+    "sourceMap": false,
+    "outDir": "app",
+    "rootDir": "src"
+  },
+  "filesGlob": [
+    "src/**/*.ts",
+    "typings/main.d.ts"
+  ],
+  "files": [
+    "src/api/authenticate.ts",
+    "src/api/permissions.ts",
+    "src/api/routes.ts",
+    "src/global.spec.ts",
+    "src/server.ts",
+    "typings/main.d.ts"
+  ],
+  "atom": {
+    "rewriteTsconfig": true
+  }
 }
