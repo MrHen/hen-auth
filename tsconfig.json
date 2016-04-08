@@ -8,10 +8,13 @@
     "rootDir": "src"
   },
   "filesGlob": [
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "typings/main.d.ts"
   ],
   "files": [
-    "src/global.spec.ts"
+    "src/global.spec.ts",
+    "src/server.ts",
+    "typings/main.d.ts"
   ],
   "atom": {
     "rewriteTsconfig": true
