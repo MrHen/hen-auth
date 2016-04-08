@@ -11,6 +11,7 @@ import path = require("path");
 import logger = require("morgan");
 
 import authenticate from "./api/authenticate";
+import * as permissions from "./api/permissions";
 
 import apiRoute = require("./api/routes");
 
@@ -24,6 +25,10 @@ async.auto({
           secret: new Buffer(process.env.AUTH0_CLIENT_SECRET, "base64"),
           audience: process.env.AUTH0_CLIENT_ID
       });
+      cb();
+    },
+    "configPermissions": (cb) => {
+      permissions.init();
       cb();
     },
     "app": (cb) => {

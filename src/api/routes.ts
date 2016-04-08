@@ -2,12 +2,14 @@ import express = require("express");
 import path = require("path");
 
 import * as authenticate from "./authenticate";
+import permissions from "./permissions";
 
 let router = express.Router();
 
 router.use("/secured", authenticate.token());
 router.use("/scoped", authenticate.token());
-router.use("/scoped", authenticate.userValues({"app_metadata.test": "test"}));
+// router.use("/scoped", authenticate.userValues({"app_metadata.test": "test"}));
+router.use("/scoped", permissions({resource: "test"}));
 
 router.use("/public", express.static(path.join(__dirname, "public")));
 
