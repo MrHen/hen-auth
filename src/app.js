@@ -7,13 +7,11 @@ var bodyParser = require('body-parser');
 var dotenv = require('dotenv');
 var jwt = require('express-jwt');
 var cors = require('cors');
-var http = require('http');
 
 var routes = require('./api/routes/index');
 var users = require('./api/routes/users');
 
 var app = express();
-var router = express.Router();
 
 dotenv
   .config({
