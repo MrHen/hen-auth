@@ -27,7 +27,7 @@ function build() {
         {
             roles: ["admin"],
             allows: [
-                { resources: "cash", permissions: ["sell", "exchange"] },
+                { resources: "roles", permissions: ["get", "put", "delete"] },
             ]
         }
     ]);
