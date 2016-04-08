@@ -1,14 +1,14 @@
 import * as async from "async";
 
-let bodyParser = require("body-parser");
-let cors = require("cors");
-let dotenv = require("dotenv");
-let express = require("express");
-let expressJwt = require("express-jwt");
-let http = require("http");
-let path = require("path");
+import bodyParser = require("body-parser");
+import cors = require("cors");
+import dotenv = require("dotenv");
+import express = require("express");
+import expressJwt = require("express-jwt");
+import http = require("http");
+import path = require("path");
 
-let logger = require("morgan");
+import logger = require("morgan");
 
 let apiRoute = require("./api/routes/index");
 
