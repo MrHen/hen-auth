@@ -1,13 +1,9 @@
 import express = require("express");
 let router = express.Router();
 
-let users = require("./users");
-
 router.get("/", function(req, res, next) {
   res.render("index", { title: "Express" });
 });
-
-router.use("/users", users);
 
 router.get("/ping", function(req, res) {
   res.send("All good. You don't need to be authenticated to call this");
