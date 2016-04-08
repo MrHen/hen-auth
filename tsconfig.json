@@ -12,6 +12,7 @@
     "typings/main.d.ts"
   ],
   "files": [
+    "src/api/routes/api.ts",
     "src/global.spec.ts",
     "src/server.ts",
     "typings/main.d.ts"

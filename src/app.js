@@ -8,8 +8,7 @@ var dotenv = require('dotenv');
 var jwt = require('express-jwt');
 var cors = require('cors');
 
-var routes = require('./api/routes/index');
-var users = require('./api/routes/users');
+var apiRoute = require("./api/routes/api");
 
 var app = express();
 
@@ -37,8 +36,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 
-app.use('/api/', routes);
-app.use('/api/users', users);
+app.use("/api/", apiRoute);
 app.use('/api/secured', authenticate);
 app.use('/api/scoped', authenticate);
 app.use('/api/scoped', function(req, res, next) {
@@ -51,20 +49,6 @@ app.use('/api/scoped', function(req, res, next) {
   }
 
   next();
-});
-
-app.get('/api/ping', function(req, res) {
-  res.send("All good. You don't need to be authenticated to call this");
-});
-
-app.get('/api/secured/ping', function(req, res) {
-  res.status(200).send(
-    "All good. You only get this message if you're authenticated");
-});
-
-app.get('/api/scoped/ping', function(req, res) {
-  res.status(200).send(
-    "All good. You only get this message if you're scoped");
 });
 
 app.use('/bower_components', express.static(path.join(__dirname,
