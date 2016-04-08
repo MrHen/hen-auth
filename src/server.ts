@@ -60,7 +60,7 @@ async.auto({
 
         results.app.use("/bower_components", express.static(path.join(__dirname,
             "bower_components")));
-        results.app.use("/public", express.static(path.join(__dirname, "public")));
+
         results.app.use("/", express.static(path.join(__dirname, "sample")));
 
         cb();
