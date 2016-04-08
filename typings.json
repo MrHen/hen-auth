@@ -1,7 +1,9 @@
 {
   "name": "hen-auth",
   "version": false,
-  "dependencies": {},
+  "dependencies": {
+    "lodash": "registry:npm/lodash#4.0.0+20160305082308"
+  },
   "ambientDependencies": {
     "async": "registry:dt/async#1.4.2+20160316155526",
     "body-parser": "registry:dt/body-parser#0.0.0+20160317120654",

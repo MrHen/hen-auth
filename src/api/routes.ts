@@ -1,23 +1,13 @@
 import express = require("express");
 import path = require("path");
 
-import authenticate from "./authenticate";
+import * as authenticate from "./authenticate";
 
 let router = express.Router();
 
-router.use("/secured", authenticate());
-router.use("/scoped", authenticate());
-router.use("/scoped", function(req, res, next) {
-    if (!req.user || !req.user.app_metadata) {
-        return res.status(403).send("No app_metadata.");
-    }
-
-    if (req.user.app_metadata.test !== "test") {
-        return res.status(403).send("Missing claim.");
-    }
-
-    next();
-});
+router.use("/secured", authenticate.token());
+router.use("/scoped", authenticate.token());
+router.use("/scoped", authenticate.userValues({"app_metadata.test": "test"}));
 
 router.use("/public", express.static(path.join(__dirname, "public")));
 
