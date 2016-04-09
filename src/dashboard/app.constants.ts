@@ -1,3 +1,6 @@
+// LOADED_CONFIG comes from a config hack in server.ts
+let LOADED_CONFIG: DashboardConfig.ConfigInterface;
+
 namespace DashboardConfig {
     export interface ConfigInterface {
         "auth0": {
@@ -9,9 +12,6 @@ namespace DashboardConfig {
             "profile": string;
         };
     }
-
-    // LOADED_CONFIG comes from a config hack in server.ts
-    let LOADED_CONFIG: ConfigInterface;
 
     angular.module("dashboard.constants", [])
         .constant("CONFIG", LOADED_CONFIG);
