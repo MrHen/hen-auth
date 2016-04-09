@@ -1,26 +1,11 @@
 angular.module('dashboard', [
     'auth0',
-    'ngRoute',
     'dashboard.home',
     'angular-storage',
     'angular-jwt'
   ])
-  .config(function myAppConfig($routeProvider, authProvider, $httpProvider,
-    $locationProvider,
+  .config(function myAppConfig(authProvider, $httpProvider, $locationProvider,
     jwtInterceptorProvider) {
-
-    $routeProvider
-      .when('/', {
-        controller: 'HomeCtrl',
-        templateUrl: 'home/home.html',
-        pageTitle: 'Homepage',
-        requiresLogin: true
-      })
-      .when('/login', {
-        controller: 'LoginCtrl',
-        templateUrl: 'login/login.html',
-        pageTitle: 'Login'
-      });
 
     authProvider.init({
       domain: AUTH0_DOMAIN,
@@ -77,7 +62,7 @@ angular.module('dashboard', [
     $scope.$on('$routeChangeSuccess', function(e, nextRoute) {
       if (nextRoute.$$route && angular.isDefined(nextRoute.$$route.pageTitle)) {
         $scope.pageTitle = nextRoute.$$route.pageTitle +
-          ' | Auth0 dashboard';
+          ' | Auth0 Dashboard';
       }
     });
   });

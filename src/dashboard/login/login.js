@@ -1,4 +1,12 @@
 angular.module('dashboard')
+  .config(function myAppConfig($routeProvider) {
+    $routeProvider
+      .when('/login', {
+        controller: 'LoginCtrl',
+        templateUrl: 'login/login.html',
+        pageTitle: 'Login'
+      });
+  })
   .controller('LoginCtrl', function($scope, auth) {
 
     $scope.signin = function() {
