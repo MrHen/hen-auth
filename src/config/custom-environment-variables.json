@@ -1,0 +1,11 @@
+{
+  "auth0": {
+    "clientId": "AUTH0_CLIENT_ID",
+    "clientSecret": "AUTH0_CLIENT_SECRET",
+    "domain": "AUTH0_DOMAIN",
+    "callbackUrl": "AUTH0_CALLBACK_URL"
+  },
+  "server": {
+    "port": "PORT"
+  }
+}

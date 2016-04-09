@@ -19,11 +19,14 @@ dotenv.config({
     silent: true
 });
 
+// Must happen after dotenv
+import config = require("config");
+
 async.auto({
     "configAuth": (cb) => {
       authenticate({
-          secret: new Buffer(process.env.AUTH0_CLIENT_SECRET, "base64"),
-          audience: process.env.AUTH0_CLIENT_ID
+          secret: new Buffer(config.get<string>("auth0.clientSecret"), "base64"),
+          audience: config.get<string>("auth0.clientId")
       });
       cb();
     },
@@ -34,8 +37,7 @@ async.auto({
     "app": (cb) => {
         let app = express();
 
-        let port = process.env.PORT || 3000;
-        app.set("port", port);
+        app.set("port", config.get<string>("server.port"));
 
         app.use(cors());
 
@@ -52,7 +54,7 @@ async.auto({
         cb(null, app);
     },
     "routes": ["app", (results, cb) => {
-        results.app.use("/api/", apiRoute);
+        results.app.use("/api", apiRoute);
 
         results.app.use("/bower_components", express.static(path.join(__dirname,
             "bower_components")));
