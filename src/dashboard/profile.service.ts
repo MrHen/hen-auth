@@ -1,7 +1,7 @@
 namespace DashboardProfileService {
-    function dashboardProfileConfig($httpProvider, jwtInterceptorProvider) {
+    function dashboardProfileConfig($httpProvider, jwtInterceptorProvider, CONFIG: DashboardConfig.ConfigInterface) {
       jwtInterceptorProvider.tokenGetter = function(store) {
-        return store.get("token");
+        return store.get(CONFIG.storageKeys.token);
       };
 
       // Add a simple interceptor that will fetch all requests and add the jwt token to its authorization header.
@@ -11,9 +11,9 @@ namespace DashboardProfileService {
     }
 
     export class DashboardProfile {
-        public static $inject: string[] = ["jwtHelper", "store"];
+        public static $inject: string[] = ["jwtHelper", "store", "CONFIG"];
 
-        constructor(private jwtHelper, private store) {
+        constructor(private jwtHelper, private store, private CONFIG: DashboardConfig.ConfigInterface) {
         }
 
         public get isExpired(): boolean {
@@ -21,19 +21,19 @@ namespace DashboardProfileService {
         }
 
         public get token(): string {
-          return this.store.get("token");
+          return this.store.get(this.CONFIG.storageKeys.token);
         }
 
         public set token(token: string) {
-          this.store.set("token", token);
+          this.store.set(this.CONFIG.storageKeys.token, token);
         }
 
         public get profile(): Object {
-          return this.store.get("profile");
+          return this.store.get(this.CONFIG.storageKeys.profile);
         }
 
         public set profile(profile: Object) {
-          this.store.set("profile", profile);
+          this.store.set(this.CONFIG.storageKeys.profile, profile);
         }
     }
 

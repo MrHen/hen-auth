@@ -7,6 +7,10 @@
     "auth0": {
       "clientId": null,
       "domain": null
+    },
+    "storageKeys": {
+      "token": "token",
+      "profile": "profile"
     }
   },
   "server": {

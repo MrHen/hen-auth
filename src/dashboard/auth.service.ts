@@ -1,5 +1,5 @@
 namespace DashboardAuthService {
-    function dashboardAuthConfig(authProvider, CONFIG) {
+    function dashboardAuthConfig(authProvider, CONFIG: DashboardConfig.ConfigInterface) {
         authProvider.init({
             domain: CONFIG.auth0.domain,
             clientID: CONFIG.auth0.clientId,
