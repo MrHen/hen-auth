@@ -2,25 +2,14 @@ angular.module('dashboard', [
     'dashboard.constants',
     'dashboard.auth',
     'dashboard.home',
-    'angular-storage',
-    'angular-jwt'
+    'dashboard.profile'
   ])
-  .config(function myAppConfig($httpProvider, jwtInterceptorProvider) {
-    jwtInterceptorProvider.tokenGetter = function(store) {
-      return store.get('token');
-    };
-
-    // Add a simple interceptor that will fetch all requests and add the jwt token to its authorization header.
-    // NOTE: in case you are calling APIs which expect a token signed with a different secret, you might
-    // want to check the delegation-token example
-    $httpProvider.interceptors.push('jwtInterceptor');
-  })
-  .run(function($rootScope, store, jwtHelper, $location, DashboardAuth) {
+  .run(function($rootScope, store, $location, DashboardAuth, DashboardProfile) {
     $rootScope.$on('$locationChangeStart', function() {
 
-      var token = store.get('token');
+      var token = DashboardProfile.token;
       if (token) {
-        if (!jwtHelper.isTokenExpired(token)) {
+        if (!DashboardProfile.isExpired) {
           if (!DashboardAuth.isAuthenticated) {
             DashboardAuth.authenticate(token);
           }

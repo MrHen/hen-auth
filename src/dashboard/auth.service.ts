@@ -20,15 +20,15 @@ namespace DashboardAuthService {
     }
 
     export class DashboardAuth {
-        public static $inject: string[] = ["$location", "auth", "store"];
+        public static $inject: string[] = ["$location", "auth", "DashboardProfile"];
 
-        constructor(private $location: angular.ILocationService, private auth, private store) {
+        constructor(private $location: angular.ILocationService, private auth, private DashboardProfile: DashboardProfileService.DashboardProfile) {
         }
 
         public success(profilePromise, idToken) {
             profilePromise.then((profile) => {
-                this.store.set("profile", profile);
-                this.store.set("token", idToken);
+                this.DashboardProfile.profile = profile;
+                this.DashboardProfile.token = idToken;
             });
             this.$location.path("/");
         }
@@ -38,7 +38,7 @@ namespace DashboardAuthService {
         }
 
         public authenticate(token: string) {
-          this.auth.authenticate(this.store.get("profile"), token);
+          this.auth.authenticate(this.DashboardProfile.profile, token);
         }
 
         public authenticated() {
@@ -53,8 +53,8 @@ namespace DashboardAuthService {
     angular.module("dashboard.auth",
         [
             "auth0",
-            "angular-storage",
-            "dashboard.constants"
+            "dashboard.constants",
+            "dashboard.profile"
         ])
         .config(dashboardAuthConfig)
         .service("DashboardAuth", DashboardAuth);
