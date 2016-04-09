@@ -4,12 +4,13 @@ angular.module('dashboard', [
     'angular-storage',
     'angular-jwt'
   ])
+  .constant("CONFIG", LOADED_CONFIG)
   .config(function myAppConfig(authProvider, $httpProvider, $locationProvider,
-    jwtInterceptorProvider) {
+    jwtInterceptorProvider, CONFIG) {
 
     authProvider.init({
-      domain: AUTH0_DOMAIN,
-      clientID: AUTH0_CLIENT_ID,
+      domain: CONFIG.auth0.domain,
+      clientID: CONFIG.auth0.clientId,
       loginUrl: '/login'
     });
 

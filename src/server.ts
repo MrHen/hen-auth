@@ -59,6 +59,16 @@ async.auto({
         results.app.use("/bower_components", express.static(path.join(__dirname,
             "bower_components")));
 
+        // Hack to get configs into the client. Angular doesn't like loading
+        // external files via $http before/during the config step.
+        results.app.use("/config.js", (req, res) => {
+            res.send("var LOADED_CONFIG = " + JSON.stringify(config.get("client")));
+        });
+
+        results.app.use("/config.json", (req, res) => {
+            res.send(config.get("client"));
+        });
+
         results.app.use("/", express.static(path.join(__dirname, "dashboard")));
 
         cb();

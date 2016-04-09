@@ -1,9 +1,13 @@
 {
   "auth0": {
     "clientId": null,
-    "clientSecret": null,
-    "domain": null,
-    "callbackUrl": null
+    "clientSecret": null
+  },
+  "client": {
+    "auth0": {
+      "clientId": null,
+      "domain": null
+    }
   },
   "server": {
     "port": 3000
