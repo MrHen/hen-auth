@@ -2,12 +2,13 @@ namespace DashboardHome {
     angular.module("dashboard.home",
         [
             "auth0",
+            "angular-storage",
             "ui.router"
         ])
         .config(dashboardHomeConfig)
         .controller("HomeCtrl", HomeController);
 
-    function dashboardHomeConfig($stateProvider) {
+    function dashboardHomeConfig($stateProvider: angular.ui.IStateProvider) {
         $stateProvider
             .state("home", {
                 url: "/",
@@ -19,8 +20,20 @@ namespace DashboardHome {
             });
     }
 
-    function HomeController($scope, auth, $http,
-        $location, store) {
+    interface IHomeScope extends angular.IScope {
+        auth: auth0.angular.IAuth0Service;
+        callApi: () => any;
+        callScopedApi: () => any;
+        logout: () => any;
+        response: string;
+    }
+
+    function HomeController(
+        $scope: IHomeScope,
+        auth: auth0.angular.IAuth0Service,
+        $http: angular.IHttpService,
+        $location: angular.ILocationService,
+        store: angular.a0.storage.IStoreService) {
 
         $scope.auth = auth;
 

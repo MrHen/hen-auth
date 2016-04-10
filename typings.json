@@ -7,8 +7,10 @@
   "ambientDependencies": {
     "acl": "registry:dt/acl#0.4.7+20160316155526",
     "angular": "registry:dt/angular#1.5.0+20160328125810",
+    "angular-storage": "registry:dt/angular-storage#0.0.11+20160317120654",
     "angular-ui-router": "registry:dt/angular-ui-router#1.1.5+20160317120654",
     "async": "registry:dt/async#1.4.2+20160316155526",
+    "auth0-angular": "registry:dt/auth0-angular#0.0.0+20160316171810",
     "bluebird": "registry:dt/bluebird#2.0.0+20160319051630",
     "body-parser": "registry:dt/body-parser#0.0.0+20160317120654",
     "config": "registry:dt/config#0.0.0+20160317120654",
