@@ -43,10 +43,10 @@ namespace DashboardHome {
         function callApi() {
             // Just call the API as you'd do using $http
             DashboardApi.callApi()
-                .then(function(result) {
+                .then((result) => {
                     $scope.response = JSON.stringify(result, null, 2);
                 })
-                .catch(function(response) {
+                .catch((response) => {
                     if (response.status === -1) {
                         alert("Please download the API seed so that you can call it.");
                     } else {
@@ -58,10 +58,10 @@ namespace DashboardHome {
         function callScopedApi() {
             // Just call the API as you'd do using $http
             DashboardApi.callScopedApi()
-                .then(function(result) {
+                .then((result) => {
                     $scope.response = JSON.stringify(result, null, 2);
                 })
-                .catch(function(response) {
+                .catch((response) => {
                     if (response.status === -1) {
                         alert("Please download the API seed so that you can call it.");
                     } else {

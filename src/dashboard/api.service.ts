@@ -8,7 +8,7 @@ namespace DashboardApiService {
     }
 
     function DashboardApi($http: angular.IHttpService) {
-        let service = {
+        let service: IDashboardApi = {
           callApi: callApi,
           callScopedApi: callScopedApi
         };
