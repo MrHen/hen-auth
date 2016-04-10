@@ -10,7 +10,12 @@ namespace DashboardApp {
         .run(dashboardAppRun)
         .controller("AppCtrl", AppCtrl);
 
-    function dashboardAppRun($rootScope, $location, DashboardAuth, DashboardProfile) {
+    function dashboardAppRun(
+        $rootScope: angular.IRootScopeService,
+        $location: angular.ILocationService,
+        DashboardAuth: DashboardAuthService.DashboardAuth,
+        DashboardProfile: DashboardProfileService.DashboardProfile) {
+
         $rootScope.$on("$locationChangeStart", function() {
 
             let token = DashboardProfile.token;
@@ -28,7 +33,7 @@ namespace DashboardApp {
         });
     }
 
-    function AppCtrl($rootScope, $scope, $location) {
+    function AppCtrl($rootScope: angular.IRootScopeService) {
         $rootScope.$on("$stateChangeError", function(e) {
             console.log(e);
         });
