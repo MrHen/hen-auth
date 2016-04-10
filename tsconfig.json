@@ -15,6 +15,7 @@
     "src/api/authenticate.ts",
     "src/api/permissions.ts",
     "src/api/routes.ts",
+    "src/dashboard/api.service.ts",
     "src/dashboard/app.constants.ts",
     "src/dashboard/app.ts",
     "src/dashboard/auth.service.ts",

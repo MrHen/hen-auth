@@ -2,6 +2,7 @@ namespace DashboardHome {
     angular.module("dashboard.home",
         [
             "ui.router",
+            "dashboard.api",
             "dashboard.auth",
             "dashboard.profile"
         ])
@@ -30,7 +31,7 @@ namespace DashboardHome {
 
     function HomeController(
         $scope: IHomeScope,
-        $http: angular.IHttpService,
+        DashboardApi: DashboardApiService.IDashboardApi,
         DashboardAuth: DashboardAuthService.DashboardAuth,
         DashboardProfile: DashboardProfileService.DashboardProfile) {
 
@@ -41,34 +42,32 @@ namespace DashboardHome {
 
         function callApi() {
             // Just call the API as you'd do using $http
-            $http({
-                url: "/api/secured/ping",
-                method: "GET"
-            }).then(function(result) {
-                $scope.response = JSON.stringify(result, null, 2);
-            }, function(response) {
-                if (response.status === -1) {
-                    alert("Please download the API seed so that you can call it.");
-                } else {
-                    alert(response.data);
-                }
-            });
+            DashboardApi.callApi()
+                .then(function(result) {
+                    $scope.response = JSON.stringify(result, null, 2);
+                })
+                .catch(function(response) {
+                    if (response.status === -1) {
+                        alert("Please download the API seed so that you can call it.");
+                    } else {
+                        alert(response.data);
+                    }
+                });
         }
 
         function callScopedApi() {
             // Just call the API as you'd do using $http
-            $http({
-                url: "/api/scoped/ping",
-                method: "GET"
-            }).then(function(result) {
-                $scope.response = JSON.stringify(result, null, 2);
-            }, function(response) {
-                if (response.status === -1) {
-                    alert("Please download the API seed so that you can call it.");
-                } else {
-                    alert(response.data);
-                }
-            });
+            DashboardApi.callScopedApi()
+                .then(function(result) {
+                    $scope.response = JSON.stringify(result, null, 2);
+                })
+                .catch(function(response) {
+                    if (response.status === -1) {
+                        alert("Please download the API seed so that you can call it.");
+                    } else {
+                        alert(response.data);
+                    }
+                });
         }
     }
 }
