@@ -1,9 +1,17 @@
 namespace DashboardAuthService {
+    angular.module("dashboard.auth",
+        [
+            "auth0",
+            "dashboard.constants",
+            "dashboard.profile"
+        ])
+        .config(dashboardAuthConfig)
+        .service("DashboardAuth", () => DashboardAuthService.DashboardAuth);
+
     function dashboardAuthConfig(authProvider, CONFIG: DashboardConfig.ConfigInterface) {
         authProvider.init({
             domain: CONFIG.auth0.domain,
             clientID: CONFIG.auth0.clientId,
-            loginUrl: "/login",
             loginState: "login"
         });
 
@@ -39,7 +47,7 @@ namespace DashboardAuthService {
         }
 
         public authenticate(token: string) {
-          this.auth.authenticate(this.DashboardProfile.profile, token);
+            this.auth.authenticate(this.DashboardProfile.profile, token);
         }
 
         public authenticated() {
@@ -47,16 +55,7 @@ namespace DashboardAuthService {
         }
 
         public get isAuthenticated(): boolean {
-          return this.auth.isAuthenticated;
+            return this.auth.isAuthenticated;
         }
     }
-
-    angular.module("dashboard.auth",
-        [
-            "auth0",
-            "dashboard.constants",
-            "dashboard.profile"
-        ])
-        .config(dashboardAuthConfig)
-        .service("DashboardAuth", DashboardAuth);
 }

@@ -1,4 +1,13 @@
 namespace DashboardProfileService {
+  angular.module("dashboard.profile",
+      [
+          "angular-jwt",
+          "angular-storage",
+          "dashboard.constants"
+      ])
+      .config(dashboardProfileConfig)
+      .service("DashboardProfile", () => DashboardProfileService.DashboardProfile);
+
     function dashboardProfileConfig($httpProvider, jwtInterceptorProvider, CONFIG: DashboardConfig.ConfigInterface) {
       jwtInterceptorProvider.tokenGetter = function(store) {
         return store.get(CONFIG.storageKeys.token);
@@ -36,13 +45,4 @@ namespace DashboardProfileService {
           this.store.set(this.CONFIG.storageKeys.profile, profile);
         }
     }
-
-    angular.module("dashboard.profile",
-        [
-            "angular-jwt",
-            "angular-storage",
-            "dashboard.constants"
-        ])
-        .config(dashboardProfileConfig)
-        .service("DashboardProfile", DashboardProfile);
 }
