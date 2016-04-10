@@ -1,13 +1,4 @@
 namespace DashboardAuthService {
-    angular.module("dashboard.auth",
-        [
-            "auth0",
-            "dashboard.constants",
-            "dashboard.profile"
-        ])
-        .config(dashboardAuthConfig)
-        .service("DashboardAuth", () => DashboardAuthService.DashboardAuth);
-
     function dashboardAuthConfig(authProvider, CONFIG: DashboardConfig.ConfigInterface) {
         authProvider.init({
             domain: CONFIG.auth0.domain,
@@ -58,4 +49,13 @@ namespace DashboardAuthService {
             return this.auth.isAuthenticated;
         }
     }
+
+    angular.module("dashboard.auth",
+        [
+            "auth0",
+            "dashboard.constants",
+            "dashboard.profile"
+        ])
+        .config(dashboardAuthConfig)
+        .service("DashboardAuth", DashboardAuthService.DashboardAuth);
 }
