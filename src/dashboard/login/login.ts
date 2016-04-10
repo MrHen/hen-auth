@@ -2,7 +2,8 @@ namespace DashboardLogin {
     angular.module("dashboard.login",
         [
             "ui.router",
-            "dashboard.auth"
+            "dashboard.auth",
+            "dashboard.constants"
         ])
         .config(dashboardLoginConfig)
         .controller("LoginCtrl", LoginController);

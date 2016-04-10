@@ -5,7 +5,8 @@ namespace DashboardApp {
             "dashboard.auth",
             "dashboard.home",
             "dashboard.login",
-            "dashboard.profile"
+            "dashboard.profile",
+            "dashboard.root"
         ])
         .run(dashboardAppRun)
         .controller("AppCtrl", AppCtrl);

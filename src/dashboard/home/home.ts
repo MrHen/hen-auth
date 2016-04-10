@@ -4,14 +4,15 @@ namespace DashboardHome {
             "ui.router",
             "dashboard.api",
             "dashboard.auth",
+            "dashboard.constants",
             "dashboard.profile"
         ])
         .config(dashboardHomeConfig)
         .controller("HomeCtrl", HomeController);
 
-    function dashboardHomeConfig($stateProvider: angular.ui.IStateProvider) {
+    function dashboardHomeConfig($stateProvider: angular.ui.IStateProvider, CONFIG: DashboardConfig.ConfigInterface) {
         $stateProvider
-            .state("home", {
+            .state(CONFIG.states.home, {
                 url: "/",
                 templateUrl: "home/home.html",
                 controller: "HomeCtrl",

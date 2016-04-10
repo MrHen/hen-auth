@@ -9,7 +9,9 @@
       "domain": null
     },
     "states": {
-      "login": "login"
+      "home": "root.home",
+      "login": "root.login",
+      "root": "root"
     },
     "storageKeys": {
       "token": "token",
