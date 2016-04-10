@@ -8,6 +8,9 @@
       "clientId": null,
       "domain": null
     },
+    "states": {
+      "login": "login"
+    },
     "storageKeys": {
       "token": "token",
       "profile": "profile"

@@ -11,6 +11,9 @@ namespace DashboardConfig {
             "token": string;
             "profile": string;
         };
+        "states": {
+          "login": string;
+        };
     }
 
     angular.module("dashboard.constants", [])

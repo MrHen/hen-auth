@@ -3,7 +3,7 @@ namespace DashboardAuthService {
         authProvider.init({
             domain: CONFIG.auth0.domain,
             clientID: CONFIG.auth0.clientId,
-            loginState: "login"
+            loginState: CONFIG.states.login
         });
 
         authProvider.on("loginSuccess", function(DashboardAuth: DashboardAuth, profilePromise, idToken) {

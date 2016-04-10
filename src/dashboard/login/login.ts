@@ -7,9 +7,9 @@ namespace DashboardLogin {
         .config(dashboardLoginConfig)
         .controller("LoginCtrl", LoginController);
 
-    function dashboardLoginConfig($stateProvider: angular.ui.IStateProvider) {
+    function dashboardLoginConfig($stateProvider: angular.ui.IStateProvider, CONFIG: DashboardConfig.ConfigInterface) {
         $stateProvider
-            .state("login", {
+            .state(CONFIG.states.login, {
                 url: "/login",
                 templateUrl: "login/login.html",
                 controller: "LoginCtrl"
