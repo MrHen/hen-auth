@@ -48,6 +48,12 @@ namespace DashboardAuthService {
         public get isAuthenticated(): boolean {
             return this.auth.isAuthenticated;
         }
+
+        public signout() {
+            this.auth.signout();
+            this.DashboardProfile.profile = null;
+            this.DashboardProfile.token = null;
+        }
     }
 
     angular.module("dashboard.auth",

@@ -25,7 +25,11 @@ namespace DashboardProfileService {
         }
 
         public set token(token: string) {
-          this.store.set(this.CONFIG.storageKeys.token, token);
+          if (token) {
+            this.store.set(this.CONFIG.storageKeys.token, token);
+          } else {
+            this.store.remove(this.CONFIG.storageKeys.token);
+          }
         }
 
         public get profile(): Object {
@@ -33,7 +37,11 @@ namespace DashboardProfileService {
         }
 
         public set profile(profile: Object) {
-          this.store.set(this.CONFIG.storageKeys.profile, profile);
+          if (profile) {
+            this.store.set(this.CONFIG.storageKeys.profile, profile);
+          } else {
+            this.store.remove(this.CONFIG.storageKeys.profile);
+          }
         }
     }
 

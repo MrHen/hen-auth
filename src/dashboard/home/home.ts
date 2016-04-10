@@ -1,9 +1,9 @@
 namespace DashboardHome {
     angular.module("dashboard.home",
         [
-            "auth0",
-            "angular-storage",
-            "ui.router"
+            "ui.router",
+            "dashboard.auth",
+            "dashboard.profile"
         ])
         .config(dashboardHomeConfig)
         .controller("HomeCtrl", HomeController);
@@ -21,21 +21,21 @@ namespace DashboardHome {
     }
 
     interface IHomeScope extends angular.IScope {
-        auth: auth0.angular.IAuth0Service;
         callApi: () => any;
         callScopedApi: () => any;
         logout: () => any;
+        profile: Object;
         response: string;
     }
 
     function HomeController(
         $scope: IHomeScope,
-        auth: auth0.angular.IAuth0Service,
         $http: angular.IHttpService,
         $location: angular.ILocationService,
-        store: angular.a0.storage.IStoreService) {
+        DashboardAuth: DashboardAuthService.DashboardAuth,
+        DashboardProfile: DashboardProfileService.DashboardProfile) {
 
-        $scope.auth = auth;
+        $scope.profile = DashboardProfile.profile;
 
         $scope.callApi = function() {
             // Just call the API as you'd do using $http
@@ -70,11 +70,8 @@ namespace DashboardHome {
         };
 
         $scope.logout = function() {
-            auth.signout();
-            store.remove("profile");
-            store.remove("token");
+            DashboardAuth.signout();
             $location.path("/login");
         };
-
     }
 }
