@@ -35,9 +35,12 @@ namespace DashboardHome {
         DashboardAuth: DashboardAuthService.DashboardAuth,
         DashboardProfile: DashboardProfileService.DashboardProfile) {
 
+        $scope.callApi = callApi;
+        $scope.callScopedApi = callScopedApi;
+        $scope.logout = logout;
         $scope.profile = DashboardProfile.profile;
 
-        $scope.callApi = function() {
+        function callApi() {
             // Just call the API as you'd do using $http
             $http({
                 url: "/api/secured/ping",
@@ -51,9 +54,9 @@ namespace DashboardHome {
                     alert(response.data);
                 }
             });
-        };
+        }
 
-        $scope.callScopedApi = function() {
+        function callScopedApi() {
             // Just call the API as you'd do using $http
             $http({
                 url: "/api/scoped/ping",
@@ -67,11 +70,11 @@ namespace DashboardHome {
                     alert(response.data);
                 }
             });
-        };
+        }
 
-        $scope.logout = function() {
+        function logout() {
             DashboardAuth.signout();
             $location.path("/login");
-        };
+        }
     }
 }
