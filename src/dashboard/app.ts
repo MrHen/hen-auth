@@ -8,8 +8,7 @@ namespace DashboardApp {
             "dashboard.profile",
             "dashboard.root"
         ])
-        .run(dashboardAppRun)
-        .controller("AppCtrl", AppCtrl);
+        .run(dashboardAppRun);
 
     function dashboardAppRun(
         $rootScope: angular.IRootScopeService,
@@ -32,9 +31,7 @@ namespace DashboardApp {
             }
 
         });
-    }
 
-    function AppCtrl($rootScope: angular.IRootScopeService) {
         $rootScope.$on("$stateChangeError", function(e) {
             console.log(e);
         });
