@@ -7,6 +7,7 @@
   "ambientDependencies": {
     "acl": "registry:dt/acl#0.4.7+20160316155526",
     "angular": "registry:dt/angular#1.5.0+20160328125810",
+    "angular-ui-router": "registry:dt/angular-ui-router#1.1.5+20160317120654",
     "async": "registry:dt/async#1.4.2+20160316155526",
     "bluebird": "registry:dt/bluebird#2.0.0+20160319051630",
     "body-parser": "registry:dt/body-parser#0.0.0+20160317120654",

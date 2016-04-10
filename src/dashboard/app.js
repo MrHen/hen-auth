@@ -2,9 +2,10 @@ angular.module('dashboard', [
     'dashboard.constants',
     'dashboard.auth',
     'dashboard.home',
+    "dashboard.login",
     'dashboard.profile'
   ])
-  .run(function($rootScope, store, $location, DashboardAuth, DashboardProfile) {
+  .run(function($rootScope, $location, DashboardAuth, DashboardProfile) {
     $rootScope.$on('$locationChangeStart', function() {
 
       var token = DashboardProfile.token;
@@ -21,11 +22,8 @@ angular.module('dashboard', [
 
     });
   })
-  .controller('AppCtrl', function AppCtrl($scope, $location) {
-    $scope.$on('$routeChangeSuccess', function(e, nextRoute) {
-      if (nextRoute.$$route && angular.isDefined(nextRoute.$$route.pageTitle)) {
-        $scope.pageTitle = nextRoute.$$route.pageTitle +
-          ' | Auth0 Dashboard';
-      }
+  .controller('AppCtrl', function AppCtrl($rootScope, $scope, $location) {
+    $rootScope.$on("$stateChangeError", function(e) {
+      console.log(e);
     });
   });

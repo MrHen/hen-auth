@@ -1,10 +1,13 @@
-angular.module('dashboard')
-  .config(function myAppConfig($routeProvider) {
-    $routeProvider
-      .when('/login', {
-        controller: 'LoginCtrl',
-        templateUrl: 'login/login.html',
-        pageTitle: 'Login'
+angular.module('dashboard.login', [
+    'auth0',
+    'ui.router'
+  ])
+  .config(function myAppConfig($stateProvider) {
+    $stateProvider
+      .state('login', {
+        url: "/login",
+        templateUrl: "login/login.html",
+        controller: 'LoginCtrl'
       });
   })
   .controller('LoginCtrl', function($scope, auth) {

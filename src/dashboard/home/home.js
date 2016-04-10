@@ -1,15 +1,16 @@
 angular.module('dashboard.home', [
     'auth0',
-    'ngRoute'
+    'ui.router'
   ])
-  .config(function myAppConfig($routeProvider) {
-
-    $routeProvider
-      .when('/', {
+  .config(function myAppConfig($stateProvider) {
+    $stateProvider
+      .state('home', {
+        url: "/",
+        templateUrl: "home/home.html",
         controller: 'HomeCtrl',
-        templateUrl: 'home/home.html',
-        pageTitle: 'Homepage',
-        requiresLogin: true
+        data: {
+          requiresLogin: true
+        }
       });
   })
   .controller('HomeCtrl', function HomeController($scope, auth, $http,
