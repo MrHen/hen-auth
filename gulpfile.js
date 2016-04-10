@@ -78,6 +78,7 @@ var configs = {
     env: {
       NODE_ENV: process.env.NODE_ENV || 'development'
     },
+    ext: 'ts js html css',
     watch: locations.watch.restart,
     tasks: ['build:client'],
     verbose: true
@@ -229,7 +230,7 @@ gulp.task('start', ['build:client'], function(callback) {
 });
 
 gulp.task('start:client', function() {
-  gulp_nodemon(configs.nodemon);
+  return gulp_nodemon(configs.nodemon);
 });
 
 /////////
