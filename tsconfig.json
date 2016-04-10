@@ -19,6 +19,7 @@
     "src/dashboard/app.ts",
     "src/dashboard/auth.service.ts",
     "src/dashboard/home/home.ts",
+    "src/dashboard/login/login.ts",
     "src/dashboard/profile.service.ts",
     "src/global.spec.ts",
     "src/server.ts",
