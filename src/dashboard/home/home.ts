@@ -31,13 +31,12 @@ namespace DashboardHome {
     function HomeController(
         $scope: IHomeScope,
         $http: angular.IHttpService,
-        $location: angular.ILocationService,
         DashboardAuth: DashboardAuthService.DashboardAuth,
         DashboardProfile: DashboardProfileService.DashboardProfile) {
 
         $scope.callApi = callApi;
         $scope.callScopedApi = callScopedApi;
-        $scope.logout = logout;
+        $scope.logout = DashboardAuth.signout;
         $scope.profile = DashboardProfile.profile;
 
         function callApi() {
@@ -70,11 +69,6 @@ namespace DashboardHome {
                     alert(response.data);
                 }
             });
-        }
-
-        function logout() {
-            DashboardAuth.signout();
-            $location.path("/login");
         }
     }
 }

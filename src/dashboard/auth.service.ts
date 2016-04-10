@@ -57,11 +57,12 @@ namespace DashboardAuthService {
           });
         };
 
-        public signout() {
+        public signout = () => {
             this.auth.signout();
             this.DashboardProfile.profile = null;
             this.DashboardProfile.token = null;
-        }
+            this.$location.path("/login");
+        };
     }
 
     angular.module("dashboard.auth",
