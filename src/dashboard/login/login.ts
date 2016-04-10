@@ -1,8 +1,8 @@
 namespace DashboardLogin {
     angular.module("dashboard.login",
         [
-            "auth0",
-            "ui.router"
+            "ui.router",
+            "dashboard.auth"
         ])
         .config(dashboardLoginConfig)
         .controller("LoginCtrl", LoginController);
@@ -20,13 +20,7 @@ namespace DashboardLogin {
         signin: () => any;
     }
 
-    function LoginController($scope: ILoginScope, auth: auth0.angular.IAuth0Service) {
-        $scope.signin = function() {
-            auth.signin(<any>{
-                authParams: {
-                    scope: "openid name email app_metadata" // Specify the scopes you want to retrieve
-                }
-            });
-        };
+    function LoginController($scope: ILoginScope, DashboardAuth: DashboardAuthService.DashboardAuth) {
+        $scope.signin = DashboardAuth.signin;
     }
 }

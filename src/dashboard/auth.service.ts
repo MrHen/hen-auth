@@ -49,6 +49,14 @@ namespace DashboardAuthService {
             return this.auth.isAuthenticated;
         }
 
+        public signin = () => {
+          this.auth.signin(<any>{
+              authParams: {
+                  scope: "openid name email app_metadata" // Specify the scopes you want to retrieve
+              }
+          });
+        };
+
         public signout() {
             this.auth.signout();
             this.DashboardProfile.profile = null;
