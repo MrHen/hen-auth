@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="dashboard" ng-controller="AppCtrl">
+<html>
   <head>
     <title ng-bind="pageTitle"></title>
 
@@ -21,7 +21,7 @@
     <!-- endinject -->
 
   </head>
-  <body>
+  <body ng-app="dashboard" ng-controller="AppCtrl">
     <div class="container">
       <ui-view/>
     </div>
