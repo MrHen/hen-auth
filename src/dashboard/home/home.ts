@@ -5,7 +5,8 @@ namespace DashboardHome {
             "dashboard.api",
             "dashboard.auth",
             "dashboard.constants",
-            "dashboard.profile"
+            "dashboard.profile",
+            "dashboard.codePanel"
         ])
         .config(dashboardHomeConfig)
         .controller("HomeCtrl", HomeController);
@@ -27,7 +28,7 @@ namespace DashboardHome {
         callScopedApi: () => any;
         logout: () => any;
         profile: Object;
-        response: string;
+        response: Object;
     }
 
     function HomeController(
@@ -42,32 +43,22 @@ namespace DashboardHome {
         $scope.profile = DashboardProfile.profile;
 
         function callApi() {
-            // Just call the API as you'd do using $http
-            DashboardApi.callApi()
-                .then((result) => {
-                    $scope.response = JSON.stringify(result, null, 2);
-                })
-                .catch((response) => {
-                    if (response.status === -1) {
-                        alert("Please download the API seed so that you can call it.");
-                    } else {
-                        alert(response.data);
-                    }
-                });
+            updateResponse(DashboardApi.callApi());
         }
 
         function callScopedApi() {
-            // Just call the API as you'd do using $http
-            DashboardApi.callScopedApi()
-                .then((result) => {
-                    $scope.response = JSON.stringify(result, null, 2);
+            updateResponse(DashboardApi.callScopedApi());
+        }
+
+        function updateResponse(promise: angular.IPromise<Object>) {
+            promise
+                .then((response) => {
+                    $scope.response = response;
+                    return response;
                 })
                 .catch((response) => {
-                    if (response.status === -1) {
-                        alert("Please download the API seed so that you can call it.");
-                    } else {
-                        alert(response.data);
-                    }
+                    $scope.response = response;
+                    return response;
                 });
         }
     }
