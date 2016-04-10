@@ -1,11 +1,16 @@
-angular.module("dashboard", [
-    "dashboard.constants",
-    "dashboard.auth",
-    "dashboard.home",
-    "dashboard.login",
-    "dashboard.profile"
-])
-    .run(function($rootScope, $location, DashboardAuth, DashboardProfile) {
+namespace DashboardApp {
+    angular.module("dashboard",
+        [
+            "dashboard.constants",
+            "dashboard.auth",
+            "dashboard.home",
+            "dashboard.login",
+            "dashboard.profile"
+        ])
+        .run(dashboardAppRun)
+        .controller("AppCtrl", AppCtrl);
+
+    function dashboardAppRun($rootScope, $location, DashboardAuth, DashboardProfile) {
         $rootScope.$on("$locationChangeStart", function() {
 
             let token = DashboardProfile.token;
@@ -21,9 +26,11 @@ angular.module("dashboard", [
             }
 
         });
-    })
-    .controller("AppCtrl", function AppCtrl($rootScope, $scope, $location) {
+    }
+
+    function AppCtrl($rootScope, $scope, $location) {
         $rootScope.$on("$stateChangeError", function(e) {
             console.log(e);
         });
-    });
+    }
+}
