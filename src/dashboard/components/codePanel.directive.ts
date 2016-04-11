@@ -3,7 +3,7 @@ namespace CodePanel {
         .module("dashboard.codePanel", [])
         .directive("henCodePanel", () => new CodePanelDirective())
         .controller("CodePanelController", CodePanelController)
-        .filter("formatJson", () => formatJson);
+        .filter("henFormatJson", () => formatJson);
 
     export class CodePanelDirective implements angular.IDirective {
         public templateUrl: string;
