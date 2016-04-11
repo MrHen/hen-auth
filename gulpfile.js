@@ -39,6 +39,9 @@ var locations = {
       'app/dashboard/**/*.js',
       '!app/dashboard/auth0-variables.js',
       '!app/dashboard/**/*.spec.js'
+    ],
+    css: [
+      'app/dashboard/**/*.css'
     ]
   },
 
@@ -70,6 +73,10 @@ var configs = {
     bower: {
       name: 'bower',
       ignorePath: 'app/'
+    },
+    css: {
+      name: 'css',
+      ignorePath: 'app/dashboard'
     }
   },
 
@@ -203,7 +210,8 @@ gulp.task('build:typings', function() {
 });
 
 gulp.task('build:inject', ['build:bower:copy'], function(callback) {
-  run_sequence('build:inject:angular', 'build:inject:bower', callback);
+  run_sequence('build:inject:angular', 'build:inject:bower',
+    'build:inject:css', callback);
 });
 
 gulp.task('build:inject:angular', function() {
@@ -218,6 +226,14 @@ gulp.task('build:inject:bower', function() {
     .pipe(gulp_inject(gulp.src(locations.inject.bower, {
       read: false
     }), configs.inject.bower))
+    .pipe(gulp.dest(locations.inject.dest));
+});
+
+gulp.task('build:inject:css', function() {
+  return gulp.src(locations.inject.src)
+    .pipe(gulp_inject(gulp.src(locations.inject.css, {
+      read: false
+    }), configs.inject.css))
     .pipe(gulp.dest(locations.inject.dest));
 });
 
