@@ -24,15 +24,15 @@ import config = require("config");
 
 async.auto({
     "configAuth": (cb) => {
-      authenticate({
-          secret: new Buffer(config.get<string>("auth0.clientSecret"), "base64"),
-          audience: config.get<string>("auth0.clientId")
-      });
-      cb();
+        authenticate({
+            secret: new Buffer(config.get<string>("auth0.clientSecret"), "base64"),
+            audience: config.get<string>("auth0.clientId")
+        });
+        cb();
     },
     "configPermissions": (cb) => {
-      permissions.init();
-      cb();
+        permissions.init();
+        cb();
     },
     "app": (cb) => {
         let app = express();
@@ -58,6 +58,9 @@ async.auto({
 
         results.app.use("/bower_components", express.static(path.join(__dirname,
             "bower_components")));
+
+        results.app.use("/resources", express.static(path.join(__dirname, "resources")));
+
 
         // Hack to get configs into the client. Angular doesn't like loading
         // external files via $http before/during the config step.

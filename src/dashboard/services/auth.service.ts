@@ -22,7 +22,7 @@ namespace DashboardAuthService {
     export class DashboardAuth {
         public static $inject: string[] = ["$location", "auth", "DashboardProfile"];
 
-        constructor(private $location: angular.ILocationService, private auth, private DashboardProfile: DashboardProfileService.DashboardProfile) {
+        constructor(private $location: angular.ILocationService, private auth: auth0.angular.IAuth0Service, private DashboardProfile: DashboardProfileService.DashboardProfile) {
         }
 
         public success(profilePromise, idToken) {
@@ -51,6 +51,7 @@ namespace DashboardAuthService {
 
         public signin = () => {
           this.auth.signin(<any>{
+              icon: "/resources/weave.png",
               authParams: {
                   scope: "openid name email app_metadata" // Specify the scopes you want to retrieve
               }
