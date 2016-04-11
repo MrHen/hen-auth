@@ -6,7 +6,8 @@ namespace DashboardHome {
             "dashboard.auth",
             "dashboard.constants",
             "dashboard.profile",
-            "dashboard.codePanel"
+            "dashboard.components.codePanel",
+            "dashboard.components.profileImage"
         ])
         .config(dashboardHomeConfig)
         .controller("HomeCtrl", HomeController);

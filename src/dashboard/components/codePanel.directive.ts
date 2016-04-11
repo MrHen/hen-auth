@@ -1,6 +1,6 @@
 namespace CodePanel {
     angular
-        .module("dashboard.codePanel", [])
+        .module("dashboard.components.codePanel", [])
         .directive("henCodePanel", () => new CodePanelDirective())
         .controller("CodePanelController", CodePanelController)
         .filter("henFormatJson", () => formatJson);

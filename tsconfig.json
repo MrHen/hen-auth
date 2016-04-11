@@ -18,6 +18,7 @@
     "src/dashboard/app.constants.ts",
     "src/dashboard/app.ts",
     "src/dashboard/components/codePanel.directive.ts",
+    "src/dashboard/components/profileImage.directive.ts",
     "src/dashboard/home/home.ts",
     "src/dashboard/login/login.ts",
     "src/dashboard/root/root.ts",

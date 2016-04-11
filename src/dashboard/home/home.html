@@ -1,10 +1,11 @@
 <div class="home">
   <h1 id="logo"><img src="home/auth0_logo_final_blue_RGB.png" /></h1>
-  <img src="{{profile.picture}}" />
+  <hen-profile-image src="profile.picture"></hen-profile-image>
+
   <h2>Welcome {{profile.nickname}}</h2>
   <button class="btn btn-primary" ng-click="callApi()">Call API</button> <br />
   <button class="btn" ng-click="callScopedApi()">Call scoped API</button> <br />
   <button class="btn-sm btn-warning" ng-click="logout()">Logout</button>
 
-  <hen-code-panel ng-if="response" header="'Response'" content="response" />
+  <hen-code-panel ng-if="response" header="'Response'" content="response"></hen-code-panel>
 </div>
