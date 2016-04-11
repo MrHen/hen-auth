@@ -27,16 +27,8 @@
     "angular-ui-router": "~0.2.18"
   },
   "overrides": {
-    "bootstrap": {
-      "main": [
-        "dist/css/bootstrap.min.css"
-      ]
-    },
     "font-awesome": {
       "main": "css/font-awesome.min.css"
-    },
-    "jquery": {
-      "ignore": true
     }
   }
 }
