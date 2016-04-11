@@ -4,3 +4,9 @@
   max-height: 3em;
   max-width: 3em;
 }
+
+.hen-profile-image .img-placeholder {
+  background-color: pink;
+  height: 3em;
+  width: 3em;
+}
