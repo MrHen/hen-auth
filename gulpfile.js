@@ -83,7 +83,7 @@ var configs = {
     env: {
       NODE_ENV: process.env.NODE_ENV || 'development'
     },
-    ext: 'js html css',
+    ext: 'js html css json',
     watch: locations.output,
     verbose: true
   },

@@ -2,4 +2,5 @@
   background: no-repeat center;
   background-image: url("/resources/header.png");
   border-bottom: 0.5em solid black;
+  background-size: cover;
 }

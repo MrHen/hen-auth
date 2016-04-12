@@ -9,6 +9,7 @@
       "domain": null
     },
     "states": {
+      "debug": "root.home.debug",
       "home": "root.home",
       "login": "root.login",
       "root": "root"

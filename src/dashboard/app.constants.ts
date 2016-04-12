@@ -12,6 +12,7 @@ namespace DashboardConfig {
             "profile": string;
         };
         "states": {
+          "debug": string;
           "login": string;
           "home": string;
           "root": string;

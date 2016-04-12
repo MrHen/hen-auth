@@ -3,6 +3,7 @@ namespace DashboardApp {
         [
             "dashboard.constants",
             "dashboard.auth",
+            "dashboard.debug",
             "dashboard.home",
             "dashboard.login",
             "dashboard.profile",
@@ -17,7 +18,6 @@ namespace DashboardApp {
         DashboardProfile: DashboardProfileService.DashboardProfile) {
 
         $rootScope.$on("$locationChangeStart", function() {
-
             let token = DashboardProfile.token;
             if (token) {
                 if (!DashboardProfile.isExpired) {

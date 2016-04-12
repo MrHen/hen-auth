@@ -26,11 +26,12 @@ namespace DashboardAuthService {
         }
 
         public success(profilePromise, idToken) {
-            profilePromise.then((profile) => {
+            return profilePromise.then((profile) => {
                 this.DashboardProfile.profile = profile;
                 this.DashboardProfile.token = idToken;
+
+                return profile;
             });
-            this.$location.path("/");
         }
 
         public failure() {
@@ -42,7 +43,6 @@ namespace DashboardAuthService {
         }
 
         public authenticated() {
-            this.$location.path("/");
         }
 
         public get isAuthenticated(): boolean {

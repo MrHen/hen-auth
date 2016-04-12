@@ -1,0 +1,12 @@
+<div class="hen-debug-page panel panel-default">
+    <div class="panel-heading">Welcome {{profile.nickname}}</div>
+    <div class="list-group">
+      <button class="btn list-group-item-info list-group-item" ng-click="callApi()">Call API</button>
+      <button class="btn list-group-item-info list-group-item" ng-click="callScopedApi()">Call scoped API</button>
+    </div>
+  </div>
+
+  <hen-code-panel ng-if="profile" header="'Profile'" content="profile"></hen-code-panel>
+
+  <hen-code-panel ng-if="response" header="'Response'" content="response"></hen-code-panel>
+</div>

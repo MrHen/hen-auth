@@ -1,38 +1,33 @@
-namespace DashboardHome {
-    angular.module("dashboard.home",
+namespace DashboardDebug {
+    angular.module("dashboard.debug",
         [
             "ui.router",
             "dashboard.api",
             "dashboard.constants",
             "dashboard.profile",
-            "dashboard.components.codePanel",
-            "dashboard.components.userPanel",
-            "dashboard.components.profileImage"
+            "dashboard.components.codePanel"
         ])
-        .config(dashboardHomeConfig)
-        .controller("HomeCtrl", HomeController);
+        .config(dashboardDebugConfig)
+        .controller("DebugCtrl", DebugController);
 
-    function dashboardHomeConfig($stateProvider: angular.ui.IStateProvider, CONFIG: DashboardConfig.ConfigInterface) {
+    function dashboardDebugConfig($stateProvider: angular.ui.IStateProvider, CONFIG: DashboardConfig.ConfigInterface) {
         $stateProvider
-            .state(CONFIG.states.home, {
-                url: "",
-                templateUrl: "home/home.html",
-                controller: "HomeCtrl",
-                data: {
-                    requiresLogin: true
-                }
+            .state(CONFIG.states.debug, {
+                url: "/debug",
+                templateUrl: "debug/debug.html",
+                controller: "DebugCtrl"
             });
     }
 
-    interface IHomeScope extends angular.IScope {
+    interface IDebugScope extends angular.IScope {
         callApi: () => any;
         callScopedApi: () => any;
         profile: Object;
         response: Object;
     }
 
-    function HomeController(
-        $scope: IHomeScope,
+    function DebugController(
+        $scope: IDebugScope,
         DashboardApi: DashboardApiService.IDashboardApi,
         DashboardProfile: DashboardProfileService.DashboardProfile) {
 

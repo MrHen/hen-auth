@@ -20,6 +20,7 @@
     "src/dashboard/components/codePanel.directive.ts",
     "src/dashboard/components/profileImage.directive.ts",
     "src/dashboard/components/userPanel.directive.ts",
+    "src/dashboard/debug/debug.ts",
     "src/dashboard/home/home.ts",
     "src/dashboard/login/login.ts",
     "src/dashboard/root/root.ts",

@@ -1,3 +1,8 @@
 body {
   font-family: sans-serif;
 }
+
+.btn {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
