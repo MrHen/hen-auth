@@ -19,9 +19,10 @@ let defaultConfig: PermissionsConfig = {
 function build() {
     permissions.allow([
         {
-            roles: ["verified", "test"],
+            roles: ["test"],
             allows: [
                 { resources: "test", permissions: "get" },
+                { resources: "users", permissions: "get" },
             ]
         },
         {

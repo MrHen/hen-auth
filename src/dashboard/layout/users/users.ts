@@ -1,63 +1,40 @@
-namespace DashboardHome {
+namespace DashboardUsers {
     angular.module("dashboard.layout.users",
         [
             "ui.router",
             "dashboard.constants",
-            "dashboard.components.codePanel",
-            "dashboard.components.userPanel",
-            "dashboard.components.profileImage",
-            "dashboard.services.api",
-            "dashboard.services.profile"
+            "dashboard.services.profile",
+            "dashboard.components.codePanel"
         ])
-        .config(dashboardHomeConfig)
-        .controller("HomeCtrl", HomeController);
+        .config(dashboardUsersConfig)
+        .controller("UsersCtrl", UsersController);
 
-    function dashboardHomeConfig($stateProvider: angular.ui.IStateProvider, CONFIG: DashboardConfig.ConfigInterface) {
+    function dashboardUsersConfig($stateProvider: angular.ui.IStateProvider, CONFIG: DashboardConfig.ConfigInterface) {
         $stateProvider
-            .state(CONFIG.states.home, {
-                url: "",
-                templateUrl: "layout/home/home.html",
-                controller: "HomeCtrl",
-                data: {
-                    requiresLogin: true
-                }
+            .state(CONFIG.states.users, {
+                url: "/users",
+                templateUrl: "layout/users/users.html",
+                controller: "UsersCtrl",
+                // controllerAs: "vm",
             });
     }
 
-    interface IHomeScope extends angular.IScope {
-        callApi: () => any;
-        callScopedApi: () => any;
-        profile: Object;
-        response: Object;
+    interface IUsersScope extends angular.IScope {
+        users: Object[];
     }
 
-    function HomeController(
-        $scope: IHomeScope,
-        DashboardApi: DashboardApiService.IDashboardApi,
-        DashboardProfile: DashboardProfileService.DashboardProfile) {
+    function UsersController(
+        $scope: IUsersScope,
+        DashboardApi: DashboardApiService.IDashboardApi
+    ) {
+        $scope.users = null;
 
-        $scope.callApi = callApi;
-        $scope.callScopedApi = callScopedApi;
-        $scope.profile = DashboardProfile.profile;
-
-        function callApi() {
-            updateResponse(DashboardApi.callApi());
-        }
-
-        function callScopedApi() {
-            updateResponse(DashboardApi.callScopedApi());
-        }
-
-        function updateResponse(promise: angular.IPromise<Object>) {
-            promise
-                .then((response) => {
-                    $scope.response = response;
-                    return response;
-                })
-                .catch((response) => {
-                    $scope.response = response;
-                    return response;
-                });
-        }
+        DashboardApi.getUsers()
+            .then((users) => {
+                $scope.users = users.data;
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 }

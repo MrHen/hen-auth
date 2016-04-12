@@ -5,12 +5,14 @@ namespace DashboardApiService {
     export interface IDashboardApi {
       callApi: () => angular.IPromise<any>;
       callScopedApi: () => angular.IPromise<any>;
+      getUsers: () => angular.IPromise<any>;
     }
 
     function DashboardApi($http: angular.IHttpService) {
         let service: IDashboardApi = {
           callApi: callApi,
-          callScopedApi: callScopedApi
+          callScopedApi: callScopedApi,
+          getUsers: getUsers
         };
         return service;
 
@@ -27,6 +29,13 @@ namespace DashboardApiService {
                 url: "/api/scoped/ping",
                 method: "GET"
             });
+        }
+
+        function getUsers() {
+          return $http({
+              url: "/api/users",
+              method: "GET"
+          });
         }
     }
 }

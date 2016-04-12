@@ -15,6 +15,7 @@ namespace DashboardConfig {
           "debug": string;
           "login": string;
           "home": string;
+          "users": string;
           "root": string;
         };
     }

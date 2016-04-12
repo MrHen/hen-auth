@@ -1,7 +1,10 @@
 {
   "auth0": {
     "clientId": "AUTH0_CLIENT_ID",
-    "clientSecret": "AUTH0_CLIENT_SECRET"
+    "clientSecret": "AUTH0_CLIENT_SECRET",
+    "tokens": {
+      "userManagement": "AUTH0_TOKENS_USERMANAGEMENT"
+    }
   },
   "client": {
     "auth0": {

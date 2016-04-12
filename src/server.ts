@@ -14,6 +14,7 @@ import authenticate from "./api/authenticate";
 import * as permissions from "./api/permissions";
 
 import apiRoute = require("./api/routes");
+import usersRoute from "./api/users";
 
 dotenv.config({
     silent: true
@@ -55,6 +56,12 @@ async.auto({
     },
     "routes": ["app", (results, cb) => {
         results.app.use("/api", apiRoute);
+        results.app.use("/api/users", usersRoute({
+          apiUrl: config.get<string>("auth0.apiUrl"),
+          tokens: {
+            userManagement: config.get<string>("auth0.tokens.userManagement")
+          }
+        }));
 
         results.app.use("/bower_components", express.static(path.join(__dirname,
             "bower_components")));

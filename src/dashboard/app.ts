@@ -6,6 +6,7 @@ namespace DashboardApp {
             "dashboard.layout.debug",
             "dashboard.layout.home",
             "dashboard.layout.login",
+            "dashboard.layout.users",
             "dashboard.services.profile",
             "dashboard.layout.root"
         ])

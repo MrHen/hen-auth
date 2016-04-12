@@ -1,7 +1,11 @@
 {
   "auth0": {
     "clientId": null,
-    "clientSecret": null
+    "clientSecret": null,
+    "apiUrl": "https://mrhen.auth0.com/api/v2/",
+    "tokens": {
+      "userManagement": null
+    }
   },
   "client": {
     "auth0": {
@@ -12,6 +16,7 @@
       "debug": "root.home.debug",
       "home": "root.home",
       "login": "root.login",
+      "users": "root.home.users",
       "root": "root"
     },
     "storageKeys": {
