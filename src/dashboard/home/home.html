@@ -1,6 +1,6 @@
 <div class="home container-fluid">
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-7 col-md-offset-1">
       <div class="panel panel-default">
         <div class="panel-heading">Welcome {{profile.nickname}}</div>
         <div class="panel-body">
@@ -19,14 +19,8 @@
       <hen-code-panel ng-if="response" header="'Response'" content="response"></hen-code-panel>
     </div>
 
-    <div class="col-md-4">
-      <div class="panel panel-default">
-        <hen-profile-image src="profile.picture" class="panel-body"></hen-profile-image>
-
-        <div class="list-group">
-          <button class="btn list-group-item list-group-item" ng-click="logout()">Logout</button>
-        </div>
-      </div>
+    <div class="col-md-3 col-md-offset-1">
+      <hen-user-panel profile="profile"></hen-user-panel>
     </div>
   </div>
 </div>

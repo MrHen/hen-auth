@@ -3,10 +3,10 @@ namespace DashboardHome {
         [
             "ui.router",
             "dashboard.api",
-            "dashboard.auth",
             "dashboard.constants",
             "dashboard.profile",
             "dashboard.components.codePanel",
+            "dashboard.components.userPanel",
             "dashboard.components.profileImage"
         ])
         .config(dashboardHomeConfig)
@@ -27,7 +27,6 @@ namespace DashboardHome {
     interface IHomeScope extends angular.IScope {
         callApi: () => any;
         callScopedApi: () => any;
-        logout: () => any;
         profile: Object;
         response: Object;
     }
@@ -35,12 +34,10 @@ namespace DashboardHome {
     function HomeController(
         $scope: IHomeScope,
         DashboardApi: DashboardApiService.IDashboardApi,
-        DashboardAuth: DashboardAuthService.DashboardAuth,
         DashboardProfile: DashboardProfileService.DashboardProfile) {
 
         $scope.callApi = callApi;
         $scope.callScopedApi = callScopedApi;
-        $scope.logout = DashboardAuth.signout;
         $scope.profile = DashboardProfile.profile;
 
         function callApi() {
