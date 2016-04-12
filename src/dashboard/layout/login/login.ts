@@ -1,8 +1,8 @@
 namespace DashboardLogin {
-    angular.module("dashboard.login",
+    angular.module("dashboard.layout.login",
         [
             "ui.router",
-            "dashboard.auth",
+            "dashboard.services.auth",
             "dashboard.constants"
         ])
         .config(dashboardLoginConfig)
@@ -12,7 +12,7 @@ namespace DashboardLogin {
         $stateProvider
             .state(CONFIG.states.login, {
                 url: "/login",
-                templateUrl: "login/login.html",
+                templateUrl: "layout/login/login.html",
                 controller: "LoginCtrl"
             });
     }

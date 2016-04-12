@@ -53,7 +53,7 @@ namespace DashboardAuthService {
           this.auth.signin(<any>{
               icon: "/resources/weave.png",
               authParams: {
-                  scope: "openid name email app_metadata" // Specify the scopes you want to retrieve
+                  scope: "openid name app_metadata" // Specify the scopes you want to retrieve
               }
           });
         };
@@ -66,11 +66,11 @@ namespace DashboardAuthService {
         };
     }
 
-    angular.module("dashboard.auth",
+    angular.module("dashboard.services.auth",
         [
             "auth0",
             "dashboard.constants",
-            "dashboard.profile"
+            "dashboard.services.profile"
         ])
         .config(dashboardAuthConfig)
         .service("DashboardAuth", DashboardAuthService.DashboardAuth);

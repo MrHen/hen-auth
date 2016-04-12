@@ -1,10 +1,10 @@
 namespace DashboardDebug {
-    angular.module("dashboard.debug",
+    angular.module("dashboard.layout.debug",
         [
             "ui.router",
-            "dashboard.api",
+            "dashboard.services.api",
             "dashboard.constants",
-            "dashboard.profile",
+            "dashboard.services.profile",
             "dashboard.components.codePanel"
         ])
         .config(dashboardDebugConfig)
@@ -14,7 +14,7 @@ namespace DashboardDebug {
         $stateProvider
             .state(CONFIG.states.debug, {
                 url: "/debug",
-                templateUrl: "debug/debug.html",
+                templateUrl: "layout/debug/debug.html",
                 controller: "DebugCtrl"
             });
     }

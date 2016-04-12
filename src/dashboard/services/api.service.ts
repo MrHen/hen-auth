@@ -1,5 +1,5 @@
 namespace DashboardApiService {
-    angular.module("dashboard.api", [])
+    angular.module("dashboard.services.api", [])
         .factory("DashboardApi", DashboardApi);
 
     export interface IDashboardApi {

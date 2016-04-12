@@ -1,5 +1,5 @@
 namespace DashboardRoot {
-    angular.module("dashboard.root",
+    angular.module("dashboard.layout.root",
         [
             "ui.router",
             "dashboard.constants"
@@ -10,7 +10,7 @@ namespace DashboardRoot {
         $stateProvider
             .state(CONFIG.states.root, {
                 abstract: true,
-                templateUrl: "root/root.html",
+                templateUrl: "layout/root/root.html",
             });
     }
 }

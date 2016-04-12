@@ -1,0 +1,22 @@
+<div class="home container-fluid">
+  <div class="row">
+    <div class="col-md-7 col-md-offset-1">
+      <div class="panel panel-default">
+        <div class="panel-heading">Welcome {{profile.nickname}}</div>
+        <div class="panel-body">
+          <p>This page is an authentication portal used for sites run by MrHen. You
+            should not need to sign in here &mdash; it is primarily for debugging
+            and testing.</p>
+
+            <a ui-sref="root.home.debug">DEBUG</a>
+        </div>
+      </div>
+
+      <ui-view />
+    </div>
+
+    <div class="col-md-3 col-md-offset-1">
+      <hen-user-panel profile="profile"></hen-user-panel>
+    </div>
+  </div>
+</div>

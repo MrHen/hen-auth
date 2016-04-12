@@ -2,12 +2,12 @@ namespace DashboardApp {
     angular.module("dashboard",
         [
             "dashboard.constants",
-            "dashboard.auth",
-            "dashboard.debug",
-            "dashboard.home",
-            "dashboard.login",
-            "dashboard.profile",
-            "dashboard.root"
+            "dashboard.services.auth",
+            "dashboard.layout.debug",
+            "dashboard.layout.home",
+            "dashboard.layout.login",
+            "dashboard.services.profile",
+            "dashboard.layout.root"
         ])
         .run(dashboardAppRun);
 

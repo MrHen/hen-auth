@@ -1,7 +1,7 @@
 namespace UserPanel {
     angular
         .module("dashboard.components.userPanel", [
-          "dashboard.auth"
+          "dashboard.services.auth"
         ])
         .directive("henUserPanel", () => new UserPanelDirective())
         .controller("UserPanelController", UserPanelController);

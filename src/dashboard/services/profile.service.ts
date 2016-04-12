@@ -45,7 +45,7 @@ namespace DashboardProfileService {
         }
     }
 
-    angular.module("dashboard.profile",
+    angular.module("dashboard.services.profile",
         [
             "angular-jwt",
             "angular-storage",

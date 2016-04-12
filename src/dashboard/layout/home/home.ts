@@ -1,10 +1,10 @@
 namespace DashboardHome {
-    angular.module("dashboard.home",
+    angular.module("dashboard.layout.home",
         [
             "ui.router",
-            "dashboard.api",
+            "dashboard.services.api",
             "dashboard.constants",
-            "dashboard.profile",
+            "dashboard.services.profile",
             "dashboard.components.codePanel",
             "dashboard.components.userPanel",
             "dashboard.components.profileImage"
@@ -16,7 +16,7 @@ namespace DashboardHome {
         $stateProvider
             .state(CONFIG.states.home, {
                 url: "",
-                templateUrl: "home/home.html",
+                templateUrl: "layout/home/home.html",
                 controller: "HomeCtrl",
                 data: {
                     requiresLogin: true
