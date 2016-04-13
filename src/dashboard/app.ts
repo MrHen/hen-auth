@@ -14,6 +14,7 @@ namespace DashboardApp {
 
     function dashboardAppRun(
         $rootScope: angular.IRootScopeService,
+        $state: angular.ui.IStateService,
         $location: angular.ILocationService,
         DashboardAuth: DashboardAuthService.DashboardAuth,
         DashboardProfile: DashboardProfileService.DashboardProfile) {
@@ -31,6 +32,14 @@ namespace DashboardApp {
                 }
             }
 
+        });
+
+        // ui-router redirectTo trick
+        $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState) {
+          if (toState.redirectTo) {
+            event.preventDefault();
+            $state.go(toState.redirectTo, toParams);
+          }
         });
 
         $rootScope.$on("$stateChangeError", function(e) {
