@@ -17,6 +17,7 @@
       "home": "root.home",
       "login": "root.login",
       "users": "root.home.users",
+      "usersList": "root.home.users.list",
       "root": "root"
     },
     "storageKeys": {

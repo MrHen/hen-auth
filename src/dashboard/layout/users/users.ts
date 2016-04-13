@@ -3,38 +3,22 @@ namespace DashboardUsers {
         [
             "ui.router",
             "dashboard.constants",
-            "dashboard.services.profile",
-            "dashboard.components.codePanel"
+            "dashboard.layout.usersList"
         ])
-        .config(dashboardUsersConfig)
-        .controller("UsersCtrl", UsersController);
+        .config(dashboardUsersConfig);
 
     function dashboardUsersConfig($stateProvider: angular.ui.IStateProvider, CONFIG: DashboardConfig.ConfigInterface) {
         $stateProvider
-            .state(CONFIG.states.users, {
+            .state(CONFIG.states.users, <any>{
                 url: "/users",
                 templateUrl: "layout/users/users.html",
-                controller: "UsersCtrl",
-                // controllerAs: "vm",
-            });
-    }
-
-    interface IUsersScope extends angular.IScope {
-        users: Object[];
-    }
-
-    function UsersController(
-        $scope: IUsersScope,
-        DashboardApi: DashboardApiService.IDashboardApi
-    ) {
-        $scope.users = null;
-
-        DashboardApi.getUsers()
-            .then((users) => {
-                $scope.users = users.data;
+                redirectTo: CONFIG.states.usersList
             })
-            .catch((error) => {
-                console.log(error);
+            .state(CONFIG.states.usersList, {
+                url: "/list",
+                templateUrl: "layout/users/usersList.html",
+                controller: "UsersListCtrl",
+                // controllerAs: "vm",
             });
     }
 }

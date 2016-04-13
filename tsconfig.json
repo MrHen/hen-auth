@@ -26,6 +26,7 @@
     "src/dashboard/layout/login/login.ts",
     "src/dashboard/layout/root/root.ts",
     "src/dashboard/layout/users/users.ts",
+    "src/dashboard/layout/users/usersList.ts",
     "src/dashboard/services/api.service.ts",
     "src/dashboard/services/auth.service.ts",
     "src/dashboard/services/profile.service.ts",

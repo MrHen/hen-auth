@@ -1,8 +1,3 @@
 <div class="hen-layout-users">
-  <div ng-if="!users">Loading</div>
-  <div ng-if="users && !users.length">No users</div>
-
-  <div ng-if="users && users.length" ng-repeat="user in users">
-    <hen-code-panel header="user.nickname" content="user"></hen-code-panel>
-  </div>
+  <ui-view>
 </div>

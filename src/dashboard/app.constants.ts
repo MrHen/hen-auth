@@ -16,6 +16,7 @@ namespace DashboardConfig {
           "login": string;
           "home": string;
           "users": string;
+          "usersList": string;
           "root": string;
         };
     }
