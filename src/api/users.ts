@@ -1,3 +1,4 @@
+import _ = require("lodash");
 import express = require("express");
 import path = require("path");
 import superagent = require("superagent");
@@ -8,7 +9,7 @@ import permissions from "./permissions";
 export interface UserRouteConfig {
     apiUrl: string;
     tokens: {
-      userManagement: string;
+        userManagement: string;
     };
 }
 
@@ -30,7 +31,26 @@ export default function(config: UserRouteConfig) {
                     return res.status(err.status || 500).send(err.response || { message: "Unknown error." });
                 }
 
-                return res.status(response.status || 200).send(response.body);
+                let userResponse = _.map(response.body, (user) => {
+                  return _.pick(user, [
+                      "user_id",
+                      "name",
+                      "email",
+                      "email_verified",
+                      "picture",
+                      "nickname",
+                      "updated_at",
+                      "identities",
+                      "created_at",
+                      "user_metadata",
+                      "blocked",
+                      "last_ip",
+                      "last_login",
+                      "logins_count"
+                  ]);
+                });
+
+                return res.status(response.status || 200).send(userResponse);
             });
     });
 
