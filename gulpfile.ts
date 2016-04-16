@@ -1,20 +1,20 @@
 let del = require("del");
-let gulp = require("gulp");
+import * as gulp from "gulp";
 let gulp_angular_filesort = require("gulp-angular-filesort");
 let gulp_bower = require("gulp-bower");
-let gulp_changed = require("gulp-changed");
+import gulp_changed = require("gulp-changed");
 let gulp_count = require("gulp-count");
-let gulp_filter = require("gulp-filter");
-let gulp_gh_pages = require("gulp-gh-pages");
-let gulp_inject = require("gulp-inject");
+import gulp_filter = require("gulp-filter");
+import gulp_gh_pages = require("gulp-gh-pages");
+import gulp_inject = require("gulp-inject");
 let gulp_spawn_mocha = require("gulp-spawn-mocha");
 import gulp_tslint from "gulp-tslint";
-let gulp_typescript = require("gulp-typescript");
+import gulp_typescript = require("gulp-typescript");
 let gulp_typings = require("gulp-typings");
-let gulp_util = require("gulp-util");
-let gulp_nodemon = require("gulp-nodemon");
-let main_bower_files = require("main-bower-files");
-let run_sequence = require("run-sequence");
+import gulp_util = require("gulp-util");
+import gulp_nodemon = require("gulp-nodemon");
+import main_bower_files = require("main-bower-files");
+import run_sequence = require("run-sequence");
 
 let locations = {
   sources: "src/**/*",
@@ -81,11 +81,11 @@ let configs = {
 
   nodemon: {
     script: locations.start,
-    env: {
-      NODE_ENV: process.env.NODE_ENV || "development"
+    env: <{[key: string]: string}>{
+      "NODE_ENV": process.env.NODE_ENV || "development"
     },
     ext: "js html css json",
-    watch: locations.output,
+    watch: [locations.output],
     verbose: true
   },
 

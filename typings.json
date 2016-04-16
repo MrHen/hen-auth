@@ -2,6 +2,7 @@
   "name": "hen-auth",
   "version": false,
   "dependencies": {
+    "gulp": "registry:npm/gulp#3.8.0+20160211003958",
     "lodash": "registry:npm/lodash#4.0.0+20160305082308"
   },
   "ambientDependencies": {
@@ -13,6 +14,7 @@
     "auth0-angular": "registry:dt/auth0-angular#0.0.0+20160316171810",
     "bluebird": "registry:dt/bluebird#2.0.0+20160319051630",
     "body-parser": "registry:dt/body-parser#0.0.0+20160317120654",
+    "chalk": "registry:dt/chalk#0.4.0+20160317120654",
     "config": "registry:dt/config#0.0.0+20160317120654",
     "cors": "registry:dt/cors#0.0.0+20160317120654",
     "dotenv": "registry:dt/dotenv#2.0.0+20160327131627",
@@ -20,15 +22,27 @@
     "express-jwt": "registry:dt/express-jwt#0.0.0+20160319033732",
     "express-serve-static-core": "registry:dt/express-serve-static-core#0.0.0+20160322035842",
     "express-unless": "registry:dt/express-unless#0.0.0+20160317120654",
+    "gulp-changed": "registry:dt/gulp-changed#0.0.0+20160316155526",
+    "gulp-filter": "registry:dt/gulp-filter#3.0.1+20160316155526",
+    "gulp-gh-pages": "registry:dt/gulp-gh-pages#0.0.0+20160316155526",
+    "gulp-inject": "registry:dt/gulp-inject#0.0.0+20160316155526",
+    "gulp-nodemon": "registry:dt/gulp-nodemon#0.0.0+20160316155526",
+    "gulp-typescript": "registry:dt/gulp-typescript#0.0.0+20160317120654",
+    "gulp-util": "registry:dt/gulp-util#0.0.0+20160316155526",
     "jquery": "registry:dt/jquery#1.10.0+20160316155526",
+    "main-bower-files": "registry:dt/main-bower-files#0.0.0+20160316155526",
     "mime": "registry:dt/mime#0.0.0+20160316155526",
+    "minimatch": "registry:dt/minimatch#2.0.8+20160317120654",
     "mocha": "registry:dt/mocha#2.2.5+20160317120654",
     "mongodb": "registry:dt/mongodb#2.1.0+20160328151449",
     "morgan": "registry:dt/morgan#1.2.2+20160317120654",
     "node": "registry:dt/node#4.0.0+20160330064709",
     "redis": "registry:dt/redis#0.12.1+20160316155526",
+    "run-sequence": "registry:dt/run-sequence#0.0.0+20160316155526",
     "serve-static": "registry:dt/serve-static#0.0.0+20160317120654",
     "should": "registry:dt/should#8.1.1+20160316155526",
-    "superagent": "registry:dt/superagent#1.4.0+20160317120654"
+    "superagent": "registry:dt/superagent#1.4.0+20160317120654",
+    "through2": "registry:dt/through2#2.0.0+20160317120654",
+    "vinyl": "registry:dt/vinyl#1.1.0+20160316155526"
   }
 }
