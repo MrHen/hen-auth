@@ -1,0 +1,40 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "noImplicitAny": false,
+    "sourceMap": false,
+    "outDir": "../app",
+    "rootDir": "."
+  },
+  "filesGlob": [
+    "./**/*.ts",
+    "!./**/*.spec.ts",
+    "../typings/main.d.ts"
+  ],
+  "files": [
+    "./api/authenticate.ts",
+    "./api/permissions.ts",
+    "./api/routes.ts",
+    "./api/users.ts",
+    "./dashboard/app.constants.ts",
+    "./dashboard/app.ts",
+    "./dashboard/components/codePanel.directive.ts",
+    "./dashboard/components/profileImage.directive.ts",
+    "./dashboard/components/userPanel.directive.ts",
+    "./dashboard/layout/debug/debug.ts",
+    "./dashboard/layout/home/home.ts",
+    "./dashboard/layout/login/login.ts",
+    "./dashboard/layout/root/root.ts",
+    "./dashboard/layout/users/users.ts",
+    "./dashboard/layout/users/usersList.ts",
+    "./dashboard/services/api.service.ts",
+    "./dashboard/services/auth.service.ts",
+    "./dashboard/services/profile.service.ts",
+    "./server.ts",
+    "../typings/main.d.ts"
+  ],
+  "atom": {
+    "rewriteTsconfig": true
+  }
+}
