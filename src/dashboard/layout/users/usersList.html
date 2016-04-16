@@ -1,0 +1,18 @@
+<div class="hen-layout-userslist panel panel-default">
+  <div ng-if="header" class="panel-heading" ng-bind="header"></div>
+
+  <div ng-if="!users || !users.length" class="panel-body">
+    <div ng-if="!users">Loading</div>
+    <div ng-if="users && !users.length">No users</div>
+  </div>
+
+  <table class="table">
+    <tr ng-if="users && users.length" ng-repeat="user in users">
+      <td><hen-profile-image src="user.picture"></hen-profile-image></td>
+      <td ng-bind="user.nickname"></td>
+      <td><code ng-bind="user.user_id"></code></td>
+      <td ng-bind="user.last_login"></td>
+      <td ng-bind="user.logins_count"></td>
+    </tr>
+  </table>
+</div>

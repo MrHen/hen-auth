@@ -23,20 +23,12 @@
     "angular": "~1.5.3",
     "auth0-angular": "~4.1.0",
     "angular-jwt": "~0.0.9",
-    "angular-route": "~1.5.3",
-    "a0-angular-storage": "~0.0.15"
+    "a0-angular-storage": "~0.0.15",
+    "angular-ui-router": "~0.2.18"
   },
   "overrides": {
-    "bootstrap": {
-      "main": [
-        "dist/css/bootstrap.min.css"
-      ]
-    },
     "font-awesome": {
       "main": "css/font-awesome.min.css"
-    },
-    "jquery": {
-      "ignore": true
     }
   }
 }

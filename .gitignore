@@ -4,3 +4,5 @@ app/
 bower_components
 node_modules
 typings
+
+src/config/local*

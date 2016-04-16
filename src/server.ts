@@ -14,28 +14,31 @@ import authenticate from "./api/authenticate";
 import * as permissions from "./api/permissions";
 
 import apiRoute = require("./api/routes");
+import usersRoute from "./api/users";
 
 dotenv.config({
     silent: true
 });
 
+// Must happen after dotenv
+import config = require("config");
+
 async.auto({
     "configAuth": (cb) => {
-      authenticate({
-          secret: new Buffer(process.env.AUTH0_CLIENT_SECRET, "base64"),
-          audience: process.env.AUTH0_CLIENT_ID
-      });
-      cb();
+        authenticate({
+            secret: new Buffer(config.get<string>("auth0.clientSecret"), "base64"),
+            audience: config.get<string>("auth0.clientId")
+        });
+        cb();
     },
     "configPermissions": (cb) => {
-      permissions.init();
-      cb();
+        permissions.init();
+        cb();
     },
     "app": (cb) => {
         let app = express();
 
-        let port = process.env.PORT || 3000;
-        app.set("port", port);
+        app.set("port", config.get<string>("server.port"));
 
         app.use(cors());
 
@@ -52,12 +55,31 @@ async.auto({
         cb(null, app);
     },
     "routes": ["app", (results, cb) => {
-        results.app.use("/api/", apiRoute);
+        results.app.use("/api", apiRoute);
+        results.app.use("/api/users", usersRoute({
+          apiUrl: config.get<string>("auth0.apiUrl"),
+          tokens: {
+            userManagement: config.get<string>("auth0.tokens.userManagement")
+          }
+        }));
 
         results.app.use("/bower_components", express.static(path.join(__dirname,
             "bower_components")));
 
-        results.app.use("/", express.static(path.join(__dirname, "sample")));
+        results.app.use("/resources", express.static(path.join(__dirname, "resources")));
+
+
+        // Hack to get configs into the client. Angular doesn't like loading
+        // external files via $http before/during the config step.
+        results.app.use("/config.js", (req, res) => {
+            res.send("var LOADED_CONFIG = " + JSON.stringify(config.get("client")));
+        });
+
+        results.app.use("/config.json", (req, res) => {
+            res.send(config.get("client"));
+        });
+
+        results.app.use("/", express.static(path.join(__dirname, "dashboard")));
 
         cb();
     }],

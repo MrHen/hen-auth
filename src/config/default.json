@@ -1,0 +1,31 @@
+{
+  "auth0": {
+    "clientId": null,
+    "clientSecret": null,
+    "apiUrl": "https://mrhen.auth0.com/api/v2/",
+    "tokens": {
+      "userManagement": null
+    }
+  },
+  "client": {
+    "auth0": {
+      "clientId": null,
+      "domain": null
+    },
+    "states": {
+      "debug": "root.home.debug",
+      "home": "root.home",
+      "login": "root.login",
+      "users": "root.home.users",
+      "usersList": "root.home.users.list",
+      "root": "root"
+    },
+    "storageKeys": {
+      "token": "token",
+      "profile": "profile"
+    }
+  },
+  "server": {
+    "port": 3000
+  }
+}

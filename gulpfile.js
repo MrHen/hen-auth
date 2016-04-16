@@ -29,23 +29,24 @@ var locations = {
   bower: "app/bower_components",
 
   inject: {
-    dest: 'app/sample',
-    src: 'app/sample/index.html',
+    dest: 'app/dashboard',
+    src: 'src/dashboard/index.html',
     bower: [
       'app/bower_components/**/*',
       '!app/bower_components/auth0.js'
     ],
     angular: [
-      'app/sample/**/*.js',
-      '!app/sample/auth0-variables.js',
-      '!app/sample/**/*.spec.js'
+      'app/dashboard/**/*.js',
+      '!app/dashboard/auth0-variables.js',
+      '!app/dashboard/**/*.spec.js'
+    ],
+    css: [
+      'app/dashboard/**/*.css'
     ]
   },
 
   filters: {
-    copy: [
-      '**/*.{html,css,json,js,jade,png}'
-    ],
+    copy: ['**/*.{html,css,json,js,jade,png}', '!src/dashboard/index.html'],
     typescript: ['**/*.ts'],
     tests: ['**/*.spec.ts']
   },
@@ -65,11 +66,15 @@ var configs = {
   inject: {
     angular: {
       name: 'angular',
-      ignorePath: 'app/sample'
+      ignorePath: 'app/dashboard'
     },
     bower: {
       name: 'bower',
       ignorePath: 'app/'
+    },
+    css: {
+      name: 'css',
+      ignorePath: 'app/dashboard'
     }
   },
 
@@ -78,8 +83,8 @@ var configs = {
     env: {
       NODE_ENV: process.env.NODE_ENV || 'development'
     },
-    watch: locations.watch.restart,
-    tasks: ['build:client'],
+    ext: 'js html css json',
+    watch: locations.output,
     verbose: true
   },
 
@@ -127,14 +132,33 @@ gulp.task('clean:typings', function() {
 // Watch
 ////////
 
-gulp.task('watch', ['build:client'], function() {
+gulp.task('watch', ['start'], function() {
   return gulp.watch(locations.sources, configs.watcher, [
-      'build:client:typescript', 'build:client:copy'
+      'watch:rebuild'
     ])
     .on('change', function(event) {
       gulp_util.log("[" + gulp_util.colors.cyan("watch") + "]", 'File ' +
         event.path + ' was ' + event.type);
     });
+});
+
+gulp.task('watch:rebuild', function(callback) {
+  run_sequence('build:client:copy', 'build:bower:copy', 'build:inject',
+    callback);
+});
+
+////////
+// Install
+////////
+
+gulp.task('install', ['install:typings', 'install:bower'], function() {});
+
+gulp.task('install:typings', function() {
+  return gulp.src(configs.typings.config).pipe(gulp_typings());
+});
+
+gulp.task('install:bower', function() {
+  return gulp_bower();
 });
 
 ////////
@@ -145,7 +169,7 @@ gulp.task('build', function(callback) {
   run_sequence('build:client', callback);
 });
 
-gulp.task('build:client', ['build:typings', 'build:bower'], function(callback) {
+gulp.task('build:client', ['install'], function(callback) {
   run_sequence('build:client:typescript', 'build:client:copy',
     'build:bower:copy', 'build:inject', callback);
 });
@@ -186,10 +210,6 @@ gulp.task('build:client:typescript', function() {
   return tsResult.js.pipe(gulp.dest(locations.output));
 });
 
-gulp.task('build:bower', function() {
-  return gulp_bower();
-});
-
 gulp.task('build:bower:copy', function() {
   return gulp.src(main_bower_files(), {
       base: "bower_components"
@@ -197,26 +217,24 @@ gulp.task('build:bower:copy', function() {
     .pipe(gulp.dest(locations.bower));
 });
 
-gulp.task('build:typings', function() {
-  return gulp.src(configs.typings.config).pipe(gulp_typings());
-});
-
 gulp.task('build:inject', ['build:bower:copy'], function(callback) {
-  run_sequence('build:inject:angular', 'build:inject:bower', callback);
-});
-
-gulp.task('build:inject:angular', function() {
   return gulp.src(locations.inject.src)
-    .pipe(gulp_inject(gulp.src(locations.inject.angular).pipe(
-      gulp_angular_filesort()), configs.inject.angular))
-    .pipe(gulp.dest(locations.inject.dest));
-});
 
-gulp.task('build:inject:bower', function() {
-  return gulp.src(locations.inject.src)
-    .pipe(gulp_inject(gulp.src(locations.inject.bower, {
-      read: false
-    }), configs.inject.bower))
+  .pipe(gulp_inject(gulp.src(locations.inject.angular).pipe(
+    gulp_angular_filesort()), configs.inject.angular))
+
+  .pipe(gulp_inject(gulp.src(locations.inject.bower, {
+    read: false
+  }), configs.inject.bower))
+
+  .pipe(gulp_inject(gulp.src(locations.inject.css, {
+    read: false
+  }), configs.inject.css))
+
+  .pipe(gulp_changed(locations.inject.dest, {
+      hasChanged: gulp_changed.compareSha1Digest
+    }))
+    .pipe(gulp_count('Injecting <%= files %>...'))
     .pipe(gulp.dest(locations.inject.dest));
 });
 
@@ -229,7 +247,7 @@ gulp.task('start', ['build:client'], function(callback) {
 });
 
 gulp.task('start:client', function() {
-  gulp_nodemon(configs.nodemon);
+  return gulp_nodemon(configs.nodemon);
 });
 
 /////////
